@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>检查报告详情</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #efefef;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+                 "Microsoft YaHei", sans-serif;
+    color: #333;
+}
+
+/* 顶部 */
+.header {
+    background: #fff;
+    height: 64px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    left: 16px;
+    top: 18px;
+    font-size: 24px;
+    color: #555;
+}
+
+.more {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    font-size: 24px;
+    color: #555;
+}
+
+.title-box {
+    text-align: center;
+    padding-top: 8px;
+}
+
+.title {
+    font-size: 22px;
+    color: #333;
+    font-weight: 500;
+}
+
+.sub-title {
+    font-size: 12px;
+    color: #888;
+    margin-top: 2px;
+}
+
+/* 内容 */
+.section {
+    background: #fff;
+    padding: 18px 16px;
+    margin-bottom: 10px;
+}
+
+.tip {
+    color: #555;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.department {
+    font-size: 18px;
+    color: #333;
+    margin-top: 6px;
+}
+
+.label {
+    color: #b0b0b0;
+    font-size: 16px;
+    margin-bottom: 18px;
+}
+
+.value {
+    color: #666;
+    font-size: 15px;
+}
+
+.result {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.8;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 顶部 -->
+<div class="header">
+    <div class="close">×</div>
+
+    <div class="title-box">
+        <div class="title">检查报告详情</div>
+        <div class="sub-title">pdwxzfb.qduhospital.cn</div>
+    </div>
+
+    <div class="more">···</div>
+</div>
+
+<!-- 提示 -->
+<div class="section">
+    <div class="tip">
+        该报告仅供参考，请以纸质版为准
+    </div>
+
+    <div class="department">
+        平度胸外科
+    </div>
+</div>
+
+<!-- 发布时间 -->
+<div class="section">
+    <div class="label">发布时间：</div>
+    <div class="value">2026-06-10 16:28:25</div>
+</div>
+
+<!-- 检查描述 -->
+<div class="section">
+    <div class="label">检查描述：</div>
+</div>
+
+<!-- 检查结果 -->
+<div class="section">
+    <div class="label">检查结果：</div>
+
+    <div class="result">
+        （右肺下叶结节）微浸润性腺癌。
+    </div>
+</div>
+
+</body>
+</html>
