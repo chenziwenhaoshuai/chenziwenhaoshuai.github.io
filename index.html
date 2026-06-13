@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!-- saved from url=(0060)https://pleasant-amethyst-xc7ikl1s-dplb3nnczwse.edgeone.app/ -->
 <html lang="zh-CN" data-immersive-translate-page-theme="light" imt-state="dual" imt-translation-dir="ltr" imt-trans-position="after"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -114,12 +114,16 @@ body {
   transform: translateX(-50%);
   width: 100%;
   max-width: 420px;
-  padding: 14px 16px;
+  padding: 0;
   background: #fff;
   border-top: 1px solid #eee;
-  text-align: left;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
 }
 .bottom-bar .total {
+  flex: 1;
+  padding: 14px 16px;
   font-size: 15px;
   color: #f97316;
   font-weight: 500;
@@ -127,6 +131,42 @@ body {
 .bottom-bar .total .amount {
   font-size: 18px;
   font-weight: 700;
+}
+.bottom-bar .date-display {
+  width: 192px;
+  background: #1688dd;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.bottom-bar .date-display .calendar-icon {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-radius: 2px;
+  position: relative;
+}
+.bottom-bar .date-display .calendar-icon::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 3px;
+  border-top: 2px solid currentColor;
+}
+.bottom-bar .date-display .calendar-icon::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: -5px;
+  width: 6px;
+  height: 4px;
+  border-left: 2px solid currentColor;
+  border-right: 2px solid currentColor;
 }
 </style>
 <style data-id="immersive-translate-default-injected-css">:root {
@@ -767,11 +807,11 @@ table [data-imt-split-divider] {display: none !important;}
     </div>
     <div class="summary-row">
       <span class="left">入院时间：2026-06-07</span>
-      <span class="right">费　用：36506.25</span>
+      <span class="right">费　用：36987.18</span>
     </div>
     <div class="summary-row">
       <span class="left"></span>
-      <span class="right">余　额：-3506.25</span>
+      <span class="right">余　额：-3987.18</span>
     </div>
   </div>
 
@@ -1452,6 +1492,10 @@ table [data-imt-split-divider] {display: none !important;}
   <div class="bottom-bar">
     <div class="total">
       <span class="label">当前总计:</span><span class="amount">25370.91</span>
+    </div>
+    <div class="date-display">
+      <span class="calendar-icon" aria-hidden="true"></span>
+      <span>2026-6-12</span>
     </div>
   </div>
 </div>
