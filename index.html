@@ -1,1504 +1,1954 @@
-﻿<!DOCTYPE html>
-<!-- saved from url=(0060)https://pleasant-amethyst-xc7ikl1s-dplb3nnczwse.edgeone.app/ -->
-<html lang="zh-CN" data-immersive-translate-page-theme="light" imt-state="dual" imt-translation-dir="ltr" imt-trans-position="after"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>住院日清单</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  background: #f5f5f5;
-  display: flex;
-  justify-content: center;
-}
-.container {
-  width: 100%;
-  max-width: 420px;
-  background: #fff;
-  min-height: 100vh;
-  position: relative;
-  padding-bottom: 60px;
-}
-.nav-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  background: #fff;
-  border-bottom: 1px solid #eee;
-}
-.nav-bar .close-btn {
-  font-size: 22px;
-  color: #333;
-  width: 30px;
-}
-.nav-bar .title-section {
-  text-align: center;
-  flex: 1;
-}
-.nav-bar .title-section .title {
-  font-size: 17px;
-  font-weight: 600;
-  color: #333;
-}
-.nav-bar .title-section .subtitle {
-  font-size: 11px;
-  color: #999;
-  margin-top: 2px;
-}
-.nav-bar .more-btn {
-  font-size: 22px;
-  color: #333;
-  width: 30px;
-  text-align: right;
-}
-.summary-box {
-  background: #fef9e7;
-  padding: 12px 16px;
-  border-bottom: 1px dashed #ddd;
-}
-.summary-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  color: #333;
-  line-height: 1.8;
-}
-.summary-row .left {
-  flex: 1;
-}
-.summary-row .right {
-  flex: 1;
-  text-align: right;
-}
-.category-header {
-  background: #f7f7f7;
-  padding: 10px 16px;
-  font-size: 14px;
-  color: #666;
-  font-weight: 500;
-}
-.fee-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  border-bottom: 1px solid #f5f5f5;
-}
-.fee-item .info {
-  flex: 1;
-  min-width: 0;
-}
-.fee-item .info .name {
-  font-size: 15px;
-  color: #333;
-  font-weight: 400;
-}
-.fee-item .info .detail {
-  font-size: 12px;
-  color: #999;
-  margin-top: 4px;
-}
-.fee-item .price {
-  font-size: 15px;
-  color: #f97316;
-  font-weight: 500;
-  white-space: nowrap;
-  margin-left: 10px;
-}
-.bottom-bar {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 420px;
-  padding: 0;
-  background: #fff;
-  border-top: 1px solid #eee;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-}
-.bottom-bar .total {
-  flex: 1;
-  padding: 14px 16px;
-  font-size: 15px;
-  color: #f97316;
-  font-weight: 500;
-}
-.bottom-bar .total .amount {
-  font-size: 18px;
-  font-weight: 700;
-}
-.bottom-bar .date-display {
-  width: 192px;
-  background: #1688dd;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 15px;
-  font-weight: 500;
-}
-.bottom-bar .date-display .calendar-icon {
-  width: 16px;
-  height: 16px;
-  border: 2px solid currentColor;
-  border-radius: 2px;
-  position: relative;
-}
-.bottom-bar .date-display .calendar-icon::before {
-  content: "";
-  position: absolute;
-  left: -2px;
-  right: -2px;
-  top: 3px;
-  border-top: 2px solid currentColor;
-}
-.bottom-bar .date-display .calendar-icon::after {
-  content: "";
-  position: absolute;
-  left: 3px;
-  top: -5px;
-  width: 6px;
-  height: 4px;
-  border-left: 2px solid currentColor;
-  border-right: 2px solid currentColor;
-}
-</style>
-<style data-id="immersive-translate-default-injected-css">:root {
-  --immersive-translate-theme-underline-borderColor: #72ece9;
-  --immersive-translate-theme-nativeUnderline-borderColor: #72ece9;
-  --immersive-translate-theme-nativeDashed-borderColor: #72ece9;
-  --immersive-translate-theme-nativeDotted-borderColor: #72ece9;
-  --immersive-translate-theme-highlight-backgroundColor: #ffff00;
-  --immersive-translate-theme-dashed-borderColor: #59c1bd;
-  --immersive-translate-theme-blockquote-borderColor: #cc3355;
-  --immersive-translate-theme-thinDashed-borderColor: #ff374f;
-  --immersive-translate-theme-dashedBorder-borderColor: #94a3b8;
-  --immersive-translate-theme-dashedBorder-borderRadius: 0;
-  --immersive-translate-theme-solidBorder-borderColor: #94a3b8;
-  --immersive-translate-theme-solidBorder-borderRadius: 0;
-  --immersive-translate-theme-dotted-borderColor: #94a3b8;
-  --immersive-translate-theme-wavy-borderColor: #72ece9;
-  --immersive-translate-theme-dividingLine-borderColor: #94a3b8;
-  --immersive-translate-theme-grey-textColor: #2f4f4f;
-  --immersive-translate-theme-marker-backgroundColor: #fbda41;
-  --immersive-translate-theme-marker-backgroundColor-rgb: 251, 218, 65;
-  --immersive-translate-theme-marker2-backgroundColor: #ffff00;
-  --immersive-translate-theme-background-backgroundColor: #dbafaf;
-  --immersive-translate-theme-background-backgroundColor-rgb: 219, 175, 175;
-  --immersive-translate-theme-background-backgroundOpacity: 12;
-  --immersive-translate-theme-opacity-opacity: 10;
-}
-
-[imt-state="dual"] .immersive-translate-target-translation-pre-whitespace {
-  white-space: pre-wrap !important;
-}
-
-[imt-state="dual"] .immersive-translate-pdf-target-container {
-  position: absolute;
-  background-color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    sans-serif;
-  top: 0;
-  width: 600px;
-  height: 100%;
-  z-index: 2;
-  line-height: 1.3;
-  font-size: 16px;
-}
-[imt-state="dual"] .immersive-translate-target-wrapper[dir="rtl"] {
-  text-align: right;
-}
-
-.immersive-translate-target-wrapper {
-  font-feature-settings: normal;
-}
-
-[imt-state="dual"]
-  .immersive-translate-pdf-target-container
-  .immersive-translate-target-wrapper {
-  color: rgb(0, 0, 0);
-  white-space: normal;
-  position: absolute;
-}
-
-[imt-state="dual"]
-  .immersive-translate-pdf-target-container
-  .immersive-translate-target-wrapper
-  font {
-  color: inherit;
-  white-space: inherit;
-  position: unset;
-}
-
-[imt-state="translation"] .immersive-translate-target-wrapper > br {
-  display: none;
-}
-
-[imt-state="translation"]
-  .immersive-translate-target-translation-block-wrapper {
-  margin: 0 !important;
-}
-
-[imt-state="dual"] .immersive-translate-target-translation-block-wrapper {
-  margin: 8px 0 !important;
-  display: inline-block;
-}
-
-.imt-mouse-hover-power-user-compare
-  .immersive-translate-target-translation-block-wrapper {
-  background-color: rgba(226, 60, 124, 0.12);
-  padding: 6px;
-}
-
-[imt-trans-position="before"]
-  .immersive-translate-target-translation-block-wrapper {
-  display: block;
-}
-
-[imt-trans-position="before"]
-  .immersive-translate-target-translation-block-wrapper {
-  margin-top: 0 !important;
-}
-
-[imt-state="dual"] .immersive-translate-target-translation-pdf-block-wrapper {
-  margin: 0 !important;
-  display: inline-block;
-}
-
-[imt-state="dual"] .immersive-translate-target-translation-theme-grey-inner,
-[imt-state="translation"] .immersive-translate-target-translation-theme-grey-inner,
-[imt-state="translation"]
-  [data-imt-translation-only="1"].immersive-translate-target-inner.immersive-translate-target-translation-theme-grey {
-  color: var(--immersive-translate-theme-grey-textColor);
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-theme-underline-inner {
-  border-bottom: 1px solid
-    var(--immersive-translate-theme-underline-borderColor) !important;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-theme-nativeUnderline-inner,
-[imt-state="translation"]
-  .immersive-translate-target-translation-theme-nativeUnderline-inner,
-[imt-state="translation"]
-  [data-imt-translation-only="1"].immersive-translate-target-inner.immersive-translate-target-translation-theme-nativeUnderline {
-  text-decoration: underline !important;
-  text-decoration-color: var(
-    --immersive-translate-theme-nativeUnderline-borderColor
-  ) !important;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-block-wrapper-theme-dashedBorder {
-  border: 1px dashed var(--immersive-translate-theme-dashedBorder-borderColor) !important;
-  border-radius: var(
-    --immersive-translate-theme-dashedBorder-borderRadius
-  ) !important;
-  padding: 6px;
-  margin-top: 2px;
-  display: inline-block;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-inline-wrapper-theme-dashedBorder {
-  border: 1px dashed var(--immersive-translate-theme-dashedBorder-borderColor) !important;
-  border-radius: var(
-    --immersive-translate-theme-dashedBorder-borderRadius
-  ) !important;
-  padding: 2px;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-block-wrapper-theme-solidBorder {
-  border: 1px solid var(--immersive-translate-theme-solidBorder-borderColor) !important;
-  border-radius: var(
-    --immersive-translate-theme-solidBorder-borderRadius
-  ) !important;
-  padding: 6px;
-  margin-top: 2px;
-  display: inline-block;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-inline-wrapper-theme-solidBorder {
-  border: 1px solid var(--immersive-translate-theme-solidBorder-borderColor) !important;
-  border-radius: var(
-    --immersive-translate-theme-solidBorder-borderRadius
-  ) !important;
-  padding: 2px;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-theme-nativeDashed-inner,
-[imt-state="translation"]
-  .immersive-translate-target-translation-theme-nativeDashed-inner,
-[imt-state="translation"]
-  [data-imt-translation-only="1"].immersive-translate-target-inner.immersive-translate-target-translation-theme-nativeDashed {
-  text-decoration: underline !important;
-  text-decoration-color: var(
-    --immersive-translate-theme-nativeDashed-borderColor
-  ) !important;
-  text-decoration-style: dashed !important;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-theme-thinDashed-inner {
-  border-bottom: 1px dashed
-    var(--immersive-translate-theme-thinDashed-borderColor) !important;
-}
-
-[imt-state="dual"] .immersive-translate-target-translation-theme-dotted-inner {
-  background-image: linear-gradient(
-    to right,
-    var(--immersive-translate-theme-dotted-borderColor) 30%,
-    rgba(255, 255, 255, 0) 0%
-  );
-  background-position: bottom;
-  background-size: 5px 1px;
-  background-repeat: repeat-x;
-  padding-bottom: 3px;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-theme-nativeDotted-inner,
-[imt-state="translation"]
-  .immersive-translate-target-translation-theme-nativeDotted-inner,
-[imt-state="translation"]
-  [data-imt-translation-only="1"].immersive-translate-target-inner.immersive-translate-target-translation-theme-nativeDotted {
-  text-decoration: underline !important;
-  text-decoration-color: var(
-    --immersive-translate-theme-nativeDotted-borderColor
-  ) !important;
-  text-decoration-style: dotted !important;
-}
-
-[imt-state="dual"] .immersive-translate-target-translation-theme-wavy-inner,
-[imt-state="translation"] .immersive-translate-target-translation-theme-wavy-inner,
-[imt-state="translation"]
-  [data-imt-translation-only="1"].immersive-translate-target-inner.immersive-translate-target-translation-theme-wavy {
-  text-decoration: underline !important;
-  text-decoration-color: var(
-    --immersive-translate-theme-wavy-borderColor
-  ) !important;
-  text-decoration-style: wavy !important;
-}
-
-[imt-state="dual"] .immersive-translate-target-translation-theme-dashed-inner {
-  background: linear-gradient(
-      to right,
-      var(--immersive-translate-theme-dashed-borderColor) 0%,
-      var(--immersive-translate-theme-dashed-borderColor) 50%,
-      transparent 50%,
-      transparent 100%
-    )
-    repeat-x left bottom;
-  background-size: 8px 2px;
-  padding-bottom: 2px;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-block-wrapper-theme-dividingLine::before {
-  content: "";
-  display: block;
-  max-width: 80px;
-  width: 10%;
-  border-top: 1px dashed
-    var(--immersive-translate-theme-dividingLine-borderColor);
-  padding-top: 8px;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-inline-wrapper-theme-dividingLine::before {
-  content: "";
-  border-left: 1px dashed
-    var(--immersive-translate-theme-dividingLine-borderColor);
-  max-height: 16px;
-  height: 16px;
-  padding-left: 8px;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-theme-highlight-inner,
-[imt-state="translation"]
-  .immersive-translate-target-translation-theme-highlight-inner,
-[imt-state="translation"]
-  [data-imt-translation-only="1"].immersive-translate-target-inner.immersive-translate-target-translation-theme-highlight {
-  background: var(--immersive-translate-theme-highlight-backgroundColor);
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-block-wrapper-theme-marker {
-  line-height: 1.5em;
-}
-
-[imt-state="dual"] .immersive-translate-target-translation-theme-marker2-inner {
-  font-weight: bold;
-  text-shadow: 10px 0px 3px
-      var(--immersive-translate-theme-marker2-backgroundColor),
-    16px 3px 9px var(--immersive-translate-theme-marker2-backgroundColor),
-    2px 0px 6px var(--immersive-translate-theme-marker2-backgroundColor),
-    -12px 0px 12px var(--immersive-translate-theme-marker2-backgroundColor) !important;
-}
-
-[imt-state="dual"] .immersive-translate-target-translation-theme-marker-inner {
-  /* TODO: add more texture */
-  background: linear-gradient(
-    to right,
-    rgba(var(--immersive-translate-theme-marker-backgroundColor-rgb), 0.1),
-    rgba(var(--immersive-translate-theme-marker-backgroundColor-rgb), 0.9) 3%,
-    rgba(var(--immersive-translate-theme-marker-backgroundColor-rgb), 0.9) 35%,
-    rgba(var(--immersive-translate-theme-marker-backgroundColor-rgb), 0.9) 70%,
-    rgba(var(--immersive-translate-theme-marker-backgroundColor-rgb), 0.8) 95%,
-    rgba(var(--immersive-translate-theme-marker-backgroundColor-rgb), 0.3)
-  );
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-
-[imt-state="dual"] .immersive-translate-target-translation-theme-weakening,
-[imt-state="translation"] .immersive-translate-target-translation-theme-weakening,
-[imt-state="translation"]
-  [data-imt-translation-only="1"].immersive-translate-target-inner.immersive-translate-target-translation-theme-weakening {
-  opacity: 0.618 !important;
-}
-
-[imt-state="dual"] .immersive-translate-target-translation-theme-italic,
-[imt-state="translation"] .immersive-translate-target-translation-theme-italic,
-[imt-state="translation"]
-  [data-imt-translation-only="1"].immersive-translate-target-inner.immersive-translate-target-translation-theme-italic {
-  font-style: italic !important;
-}
-
-[imt-state="dual"] .immersive-translate-target-translation-theme-bold,
-[imt-state="translation"] .immersive-translate-target-translation-theme-bold,
-[imt-state="translation"]
-  [data-imt-translation-only="1"].immersive-translate-target-inner.immersive-translate-target-translation-theme-bold {
-  font-weight: bold !important;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-block-wrapper-theme-paper {
-  margin: 8px 0;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  padding: 16px 32px;
-  display: inline-block;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-block-wrapper-theme-blockquote {
-  border-left: 4px solid var(--immersive-translate-theme-blockquote-borderColor) !important;
-  padding-left: 12px !important;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  display: inline-block;
-}
-
-[imt-state="dual"] .immersive-translate-target-translation-theme-mask-inner {
-  filter: blur(5px) !important;
-  transition: filter 0.3s ease !important;
-  border-radius: 10px;
-  display: inline-block;
-}
-
-[data-immersive-translate-root-translation-theme="none"]
-  .immersive-translate-target-translation-theme-mask-inner {
-  filter: none !important;
-}
-
-[data-immersive-translate-root-translation-theme="mask"]
-  .immersive-translate-target-inner {
-  filter: blur(5px) !important;
-  transition: filter 0.3s ease !important;
-  border-radius: 10px;
-  display: inline-block;
-}
-
-/* opacity theme start */
-
-[imt-state="dual"] .immersive-translate-target-translation-theme-opacity-inner {
-  filter: opacity(
-    calc(var(--immersive-translate-theme-opacity-opacity) * 1%)
-  ) !important;
-  transition: filter 0.3s ease !important;
-  border-radius: 10px;
-  display: inline-block;
-}
-
-[data-immersive-translate-root-translation-theme="none"]
-  .immersive-translate-target-translation-theme-opacity-inner {
-  filter: none !important;
-}
-[data-immersive-translate-root-translation-theme="opacity"]
-  .immersive-translate-target-inner,
-[imt-state="dual"]
-  .immersive-translate-target-translation-theme-opacity-inner:hover {
-  filter: opacity(
-    calc(var(--immersive-translate-theme-opacity-opacity) * 1%)
-  ) !important;
-  transition: filter 0.3s ease !important;
-  border-radius: 10px;
-  display: inline-block;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-theme-opacity-inner:hover {
-  filter: none !important;
-}
-
-[imt-state="dual"]
-  .immersive-translate-target-translation-theme-mask-inner:hover {
-  filter: none !important;
-}
-[data-immersive-translate-root-translation-theme="opacity"]
-  .immersive-translate-target-inner:hover {
-  filter: none !important;
-}
-
-[data-immersive-translate-root-translation-theme="mask"]
-  .immersive-translate-target-inner:hover {
-  filter: none !important;
-}
-
-/* opacity theme end */
-
-/* background theme start */
-[imt-state="dual"]
-  .immersive-translate-target-translation-block-wrapper-theme-background {
-  margin: 8px 0;
-  background: rgba(
-    var(--immersive-translate-theme-background-backgroundColor-rgb),
-    calc(var(--immersive-translate-theme-background-backgroundOpacity) * 1%)
-  );
-  border-radius: 4px;
-  box-shadow: unset !important;
-  padding: 12px;
-  display: inline-block;
-}
-[imt-state="dual"]
-  .immersive-translate-target-translation-theme-background-inner {
-  background: rgba(
-    var(--immersive-translate-theme-background-backgroundColor-rgb),
-    calc(var(--immersive-translate-theme-background-backgroundOpacity) * 1%)
-  );
-  padding-left: 6px;
-  padding-right: 6px;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-[imt-state="dual"]
-  .immersive-translate-target-translation-block-wrapper
-  .immersive-translate-target-translation-theme-background-inner {
-  background: unset;
-  padding-left: unset;
-  padding-right: unset;
-}
-/* background theme end */
-
-/* vertical css , please remain it in the last one. */
-.immersive-translate-target-translation-vertical-block-wrapper {
-  margin: 0px 8px !important;
-}
-
-.immersive-translate-text {
-  font-size: 15px !important;
-}
-
-.immersive-translate-error-toast {
-  position: fixed;
-  top: 5%;
-  z-index: 99999999;
-  left: 0;
-  right: 0;
-  margin: auto;
-  max-width: 300px;
-  padding: 16px;
-  border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-@media all and (min-width: 750px) {
-  .immersive-translate-error-toast {
-    max-width: 400px;
-  }
-}
-
-.immersive-translate-clickable-button {
-  cursor: pointer;
-}
-
-.immersive-translate-help-button {
-  cursor: pointer;
-}
-
-.immersive-translate-loading-text:before {
-  content: "...";
-}
-
-/* dark mode for loading */
-
-@media only screen and (prefers-color-scheme: dark) {
-  .immersive-translate-loading {
-    border: 2px rgba(255, 255, 255, 0.25) solid !important;
-    border-top: 2px rgba(255, 255, 255, 1) solid !important;
-  }
-}
-
-.immersive-translate-error-wrapper {
-  position: relative;
-  display: inline-flex;
-  padding: 6px;
-  margin: 0 12px;
-  white-space: nowrap;
-  font-size: 0.9em;
-}
-[lang="zh-CN"] .immersive-translate-error-wrapper {
-  font-size: 0.75em;
-}
-[lang="zh-TW"] .immersive-translate-error-wrapper {
-  font-size: 0.75em;
-}
-
-.immersive-translate-tooltip {
-  position: relative;
-  display: inline-flex;
-  /* little indicater to indicate it's hoverable */
-}
-
-.immersive-translate-tooltip-content {
-  /* here's the magic */
-  position: absolute;
-  z-index: 100000000000;
-
-  left: 50%;
-  bottom: 0;
-  transform: translate(-50%, 110%);
-  line-height: 1;
-  /* and add a small left margin */
-
-  /* basic styles */
-  width: max-content;
-  max-width: 250px;
-  word-wrap: break-word;
-  white-space: pre-line;
-  padding: 10px;
-  border-radius: 10px;
-  background: #000c;
-  color: #fff;
-  text-align: center;
-  font-size: 14px;
-  display: none;
-  /* hide by default */
-}
-
-.immersive-translate-tooltip:hover .immersive-translate-tooltip-content {
-  display: inline-block;
-}
-
-.immersive-translate-tooltip:hover + .immersive-translate-tooltip-content {
-  display: inline-block;
-}
-
-.immersive-translate-tooltip-content-table {
-  left: unset !important;
-  bottom: unset !important;
-  transform: translate(-10%, 50%) !important;
-}
-
-.immersive-translate-tooltip:hover:before {
-  display: inline-block;
-}
-
-.immersive-translate-loading-spinner {
-  vertical-align: middle !important;
-  width: 10px !important;
-  height: 10px !important;
-  display: inline-block !important;
-  margin: 0 4px !important;
-  border: 2px rgba(221, 244, 255, 0.6) solid !important;
-  border-top: 2px rgba(0, 0, 0, 0.375) solid !important;
-  border-left: 2px rgba(0, 0, 0, 0.375) solid !important;
-  border-radius: 50% !important;
-  padding: 0 !important;
-  -webkit-animation: immersive-translate-loading-animation 0.6s infinite linear !important;
-  animation: immersive-translate-loading-animation 0.6s infinite linear !important;
-}
-
-@-webkit-keyframes immersive-translate-loading-animation {
-  from {
-    -webkit-transform: rotate(0deg);
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0024)https://chenziwenhaoshuai.github.io// -->
+<html xmlns="http://www.w3.org/1999/xhtml" class="xinggang_wang_homepage no-touch"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="description" content="Chen Ziwen">
+    <meta name="keywords" content="Chen Ziwen">
+	<title>Page of Ziwen Chen</title>
+	<link rel="stylesheet" type="text/css" href="./Page of Ziwen Chen_files/mystyle.css">
+
+	
+<script async="" src="./Page of Ziwen Chen_files/analytics.js"></script><script async="" src="file://www.google-analytics.com/analytics.js"></script><script async="" src="file://www.google-analytics.com/analytics.js"></script><script async="" src="https://chenziwenhaoshuai.github.io//index_files/analytics.js.%E4%B8%8B%E8%BD%BD"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-29807050-2', 'auto');
+  ga('send', 'pageview');
+</script><style type="text/css">.TnITTtw-fp-collapsed-button {
+    display: none;
+    position: fixed !important;
+    top: 16px !important;
+    right: 16px !important;
+}
+
+.TnITTtw-fp-collapsed-button:hover {
+    opacity: 1.0 !important;
+}
+
+.TnITTtw-mate-fp-bar {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif !important;
+    color: #000;
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 999;
+    background: rgb(255 255 255 / 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 16px;
+    border-radius: 11px;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 25%);
+    width: 320px;
+    line-height: initial;
+}
+
+@-moz-document url-prefix() {
+    .TnITTtw-mate-fp-bar {
+        background: rgb(255 255 255 / 1.0);
+    }
+}
+
+.TnITTtw-mate-fp-bar.TnITTtw-dark-mode {
+    background: rgb(44, 44, 43);
+}
+
+.TnITTtw-hide-fp-bar {
+    width: 12px;
+    height: 12px;
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/regular-close-tt.png) !important;
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+}
+
+.TnITTtw-hide-fp-bar:hover {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/hover-close-tt.png) !important;
+}
+
+.TnITTtw-current-page-lang {
+    color: #6d6d72;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.TnITTtw-dark-mode .TnITTtw-current-page-lang {
+    color: #98989D;
+}
+
+.TnITTtw-fp-translate {
+    width: calc(100% - 73px) !important;
+    font-size: 14px !important;
+    text-transform: none !important;
+}
+
+.TnITTtw-fp-translate.TnITTtw-in-progress {
+    animation-name: funky-bg;
+    animation-duration: 10s;
+    animation-timing-function: ease-in;
+}
+
+.TnITTtw-fp-translate.TnITTtw-show-original {
+    width: calc(100% - 20px) !important;
+}
+
+@keyframes funky-bg {
+    from {
+        background-image: linear-gradient(145deg, #01EF92, #00D8FB),
+        linear-gradient(35deg, rgba(1, 239, 146, 0.25), rgba(0, 216, 251, 0.25)) !important;
+    }
+
+    to {
+        background-image: linear-gradient(90deg, #01EF92, #00D8FB),
+        linear-gradient(35deg, rgba(1, 239, 146, 0.25), rgba(0, 216, 251, 0.25)) !important;
+    }
+}
+
+.TnITTtw-change-language, .TnITTtw-stop-fp {
+    width: 38px;
+    height: 38px;
+    background-color: #EFEFF4;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
+    border-radius: 11px;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.TnITTtw-change-language {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/globe-earth.png) !important;
+}
+
+.TnITTtw-dark-mode .TnITTtw-change-language {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/globe-earth-dark.png) !important;
+}
+
+.TnITTtw-stop-fp {
+    display: none;
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/regular-stt-stop.png) !important;
+    background-size: 12px 12px;
+}
+
+.TnITTtw-dark-mode .TnITTtw-change-language, .TnITTtw-dark-mode .TnITTtw-stop-fp {
+    background-color: #525251 !important;
+}
+
+.TnITTtw-change-language:hover, .TnITTtw-stop-fp:hover {
+    background-color: #F6F6F6;
+}
+
+.TnITTtw-change-language:active, .TnITTtw-stop-fp:active {
+    background-color: #E9E9E9;
+}
+
+.TnITTtw-dark-mode .TnITTtw-change-language:hover,
+.TnITTtw-dark-mode .TnITTtw-stop-fp:hover,
+.TnITTtw-dark-mode .TnITTtw-change-language:active,
+.TnITTtw-dark-mode .TnITTtw-stop-fp:active {
+    background-color: #767675;
+}
+
+#TnITTtw-always-translate {
+}
+
+.TnITTtw-fp-options input {
+    padding: initial;
+    width: auto;
+    border: initial;
+    box-shadow: initial;
+    line-height: initial;
+    height: auto;
+    display: initial;
+    position: initial;
+    appearance: auto;
+    top: initial;
+    cursor: pointer;
+    margin: 0;
+}
+
+.TnITTtw-fp-options input[readonly="readonly"] {
+    opacity: 0.5;
+}
+
+#TnITTtw-always-translate + label,
+#TnITTtw-never-translate-lang + label,
+#TnITTtw-never-translate-site + label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif !important;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 14px;
+    margin-left: 4px;
+    color: #000;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 296px;
+    vertical-align: top;
+    line-height: initial;
+    letter-spacing: initial;
+    text-transform: initial;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+#TnITTtw-always-translate + label::before,
+#TnITTtw-never-translate-lang + label::before,
+#TnITTtw-never-translate-site + label::before,
+#TnITTtw-always-translate + label::after,
+#TnITTtw-never-translate-lang + label::after,
+#TnITTtw-never-translate-site + label::after  {
+    content: initial;
+} 
+
+.TnITTtw-always-translate-inner-label {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 252px;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.TnITTtw-dark-mode #TnITTtw-always-translate + label,
+.TnITTtw-dark-mode #TnITTtw-never-translate-lang + label,
+.TnITTtw-dark-mode #TnITTtw-never-translate-site + label {
+    color: #FFF;
+}
+
+#TnITTtw-always-translate + label.TnITTtw-not-pro {
+    opacity: 0.5;
+}
+
+#TnITTtw-always-translate + label .TnITTtw-pro-label {
+    position: relative;
+    background: #000;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #FFF;
+    padding: 2px 5px;
+    border-radius: 4px;
+    margin-left: 10px;
+    top: -1px;
+    user-select: none;
+    -webkit-user-select: none;
+    display: inline;
+    font-weight: 500;
+}
+
+.TnITTtw-dark-mode #TnITTtw-always-translate + label .TnITTtw-pro-label {
+    background: #FFF;
+    color: #000;
+}
+
+.TnITTtw-inline-original-tooltip {
+    display: none;
+    position: absolute;
+    margin: 0px;
+    border: none;
+    padding: 16px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255 255 255 / 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 11px;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 25%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: normal;
+}
+
+.TnITTtw-dark-mode.TnITTtw-inline-original-tooltip {
+    background-color: rgb(0 0 0 / 0.915);
+    color: #FFF;
+}
+
+.TnITTtw-inline-original-tooltip .TnITTtw-close-original-tooltip {
+    width: 12px;
+    height: 12px;
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/regular-close-tt.png) !important;
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+}
+
+.TnITTtw-inline-original-tooltip .TnITTtw-close-original-tooltip:hover {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/hover-close-tt.png) !important;
+}
+
+.TnITTtw-inline-original-tooltip .TnITTtw-original-label {
+    margin: 0;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #6d6d72;
+    margin-bottom: 10px;
+}
+
+.TnITTtw-inline-original-tooltip.TnITTtw-dark-mode .TnITTtw-original-label {
+    color: #98989D;
+}
+
+.TnITTtw-inline-original-tooltip .TnITTtw-text-layout {
+    display: inline-block;
+    margin: 0;
+    font-size: 16px;
+    color: #000;
+}
+
+.TnITTtw-inline-original-tooltip.TnITTtw-dark-mode .TnITTtw-text-layout {
+    color: #FFF;
+}
+
+.TnITTtw-highlighted-for-original {
+    color: #0F0F5F;
+    background-color: #F0F0A0;
+}
+
+/* Dropdown scrollbars */
+
+#selVisibleScroll-1, #selVisibleScroll-2, #selVisibleScroll-3 {
+    overflow: hidden;
+    height: 259px;
+    width: 100%;
+    position: relative;
+}
+
+#sel-scrollbar-1, #sel-scrollbar-2, #sel-scrollbar-3 {
+    position: absolute;
+    width: 4px;
+    height: 259px;
+    left: 225px;
+}
+
+#sel-track-1, #sel-track-2, #sel-track-3 {
+    position: absolute;
+    top: 1px;
+    width: 4px;
+    height: calc(100% - 6px);
+}
+
+#sel-dragBar-1, #sel-dragBar-2, #sel-dragBar-3 {
+    position: absolute;
+    top: 1px;
+    width: 4px;
+    background: rgba(43, 43, 43, 0.5);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.dark-mode #sel-dragBar-1, .dark-mode #sel-dragBar-2, .dark-mode #sel-dragBar-3 {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+#sel-dragBar-1:hover, #sel-dragBar-2:hover, #sel-dragBar-3:hover, 
+#sel-dragBar-1:active, #sel-dragBar-2:active, #sel-dragBar-3:active {
+    background: rgba(43, 43, 43, 0.675);
+}
+
+.dark-mode #sel-dragBar-1:hover,
+.dark-mode #sel-dragBar-2:hover,
+.dark-mode #sel-dragBar-3:hover,
+.dark-mode #sel-dragBar-1:active,
+.dark-mode #sel-dragBar-2:active,
+.dark-mode #sel-dragBar-3:active {
+    background: rgba(255, 255, 255, 0.675);
+}
+
+#sel-scrollbar-1, #sel-track-1, #sel-dragBar-1, 
+#sel-scrollbar-2, #sel-track-2, #sel-dragBar-2,
+#sel-scrollbar-3, #sel-track-3, #sel-dragBar-3 {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Spinner for when it's translating a page */
+
+.TnITTtw-cta-button-layout {
+    position: relative;
+    display: inline;
+}
+
+.TnITTtw-spinner {
+    display: none;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+}
+  
+  @media screen and (max-width: 800px) {
+    .TnITTtw-spinner {
+      top: 28px;
+    }
   }
 
-  to {
-    -webkit-transform: rotate(359deg);
-  }
-}
-
-@keyframes immersive-translate-loading-animation {
-  from {
-    transform: rotate(0deg);
+  .TnITTtw-spinner.in-text {
+    display: block;
+    background: transparent;
+    position: initial;
   }
 
-  to {
-    transform: rotate(359deg);
+  .TnITTtw-spinner.left {
+    text-align: left;
   }
+  
+  .TnITTtw-spinner > div {
+    width: 12px;
+    height: 12px;
+    background-color: rgb(0, 71, 46);
+  
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  }
+
+  .TnITTtw-spinner.in-text > div {
+    background-color: #000;
+  }
+  
+  .TnITTtw-spinner .TnITTtw-bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+  }
+  
+  .TnITTtw-spinner .TnITTtw-bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+  }
+  
+  @-webkit-keyframes sk-bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0) }
+    40% { -webkit-transform: scale(1.0) }
+  }
+  
+  @keyframes sk-bouncedelay {
+    0%, 80%, 100% { 
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    } 40% { 
+      -webkit-transform: scale(1.0);
+      transform: scale(1.0);
+    }
+  }</style><style type="text/css">/*
+ * contextMenu.js v 1.4.0
+ * Author: Sudhanshu Yadav
+ * s-yadav.github.com
+ * Copyright (c) 2013 Sudhanshu Yadav.
+ * Dual licensed under the MIT and GPL licenses
+**/
+
+.iw-contextMenu {
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.10) !important;
+    border: 1px solid #c8c7cc !important;
+    border-radius: 11px !important;
+    display: none;
+    z-index: 1000000132;
+    max-width: 300px !important;
+    width: auto !important;
 }
 
-.imt-image-status {
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--bg-2, #fff);
-  font-size: 14px;
+.dark-mode .iw-contextMenu,
+.TnITTtw-dark-mode.iw-contextMenu,
+.TnITTtw-dark-mode .iw-contextMenu {
+    border-color: #747473 !important;
 }
-</style><style data-id="immersive-translate-user-custom-style">:root {
 
-.immersive-translate-target-inner { font-family: inherit; }
-
-
-.immersive-translate-target-inner { font-family: inherit; }
+.iw-cm-menu {
+    background: #fff !important;
+    color: #000 !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    overflow: visible !important;
 }
-</style><style data-id="immersive-translate-dynamic-injected-css">.immersive-translate-target-wrapper[dir='rtl'] {text-align: right;display:block!important;}
-[dir='rtl'] .immersive-translate-target-wrapper:not([dir]) {text-align:left;direction:ltr;}
-[imt-translation-dir=rtl] [data-imt-translation-only] {text-align:right;}
-.immersive-translate-target-wrapper {word-break:break-word; user-select:text; font-feature-settings:normal;}
-[imt-state=dual] .immersive-translate-target-translation-block-wrapper-theme-dividingLine::before {display:block;}
-[imt-trans-position=before] .immersive-translate-target-translation-block-wrapper {display:block!important;}
-[data-imt-clamp-unlocked] {scrollbar-width: none;-ms-overflow-style: none;}
-[data-imt-clamp-unlocked]::-webkit-scrollbar {display: none;}
-table [data-imt-split-divider] {display: none !important;}
-</style></head>
-<body>
-<div class="container">
-  <!-- 导航栏 -->
-  <div class="nav-bar">
-    <span class="close-btn" data-imt-p="1" data-imt_insert_failed_reason="same_text">×</span>
-    <div class="title-section">
-      <div class="title">住院日清单</div>
-      <div class="subtitle" data-imt-p="1">pdwxzfb.qduhospital.cn</div>
-    </div>
-    <span class="more-btn" data-imt-p="1">···</span>
-  </div>
 
-  <!-- 患者信息条 -->
-  <div style="background:linear-gradient(135deg,#ffb347,#ff8c00);padding:10px 16px;text-align:center;color:#fff;font-size:14px;">就诊人：*桂梅</div>
+.dark-mode .iw-cm-menu,
+.TnITTtw-dark-mode.iw-cm-menu,
+.TnITTtw-dark-mode .iw-cm-menu {
+    background: #525251 !important;
+    color: #FFF !important;
+}
 
-  <!-- 总揽信息区 -->
-  <div class="summary-box">
-    <div class="summary-row">
-      <span class="left">科　室：平度胸外科</span>
-      <span class="right">预交款：33000.00</span>
-    </div>
-    <div class="summary-row">
-      <span class="left">入院时间：2026-06-07</span>
-      <span class="right">费　用：36987.18</span>
-    </div>
-    <div class="summary-row">
-      <span class="left"></span>
-      <span class="right">余　额：-3987.18</span>
-    </div>
-  </div>
+.iw-curMenu {
+}
 
-  <!-- 费用列表 -->
-  <div class="fee-list">
+.iw-cm-menu li {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif !important;
+    list-style: none !important;
+    padding: 10px !important;
+    padding-right: 20px !important;
+    border-bottom: 1px solid #c8c7cc !important;
+    font-weight: 400 !important;
+    cursor: pointer !important;
+    position: relative !important;
+    font-size: 14px !important;
+    margin: 0 !important;
+    line-height: inherit !important;
+    border-radius: 0 !important;
+    display: block !important;
+}
 
-    <!-- 床位费 -->
-    <div class="category-header">床位费</div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">床位费（三人间）</div>
-        <div class="detail">[单价]60.0000*[数量]1床位·日</div>
-      </div>
-      <div class="price">60.00 元</div>
-    </div>
+.dark-mode .iw-cm-menu li, .TnITTtw-dark-mode .iw-cm-menu li {
+    border-bottom-color: #747473 !important;
+}
 
-    <!-- 诊察费 -->
-    <div class="category-header">诊察费</div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">住院诊查费（普通）</div>
-        <div class="detail">[单价]28.0000*[数量]1日</div>
-      </div>
-      <div class="price">28.00 元</div>
-    </div>
+.iw-cm-menu li:first-child {
+    border-top-left-radius: 11px !important;
+    border-top-right-radius: 11px !important;
+}
 
-    <!-- 检查费 -->
-    <div class="category-header">检查费</div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">手术标本病理诊断每增加一个蜡块加收</div>
-        <div class="detail">[单价]30.0000*[数量]4蜡块</div>
-      </div>
-      <div class="price">120.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">手术标本病理诊断</div>
-        <div class="detail">[单价]100.0000*[数量]1蜡块</div>
-      </div>
-      <div class="price">100.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">免疫组织化学染色诊断</div>
-        <div class="detail">[单价]140.0000*[数量]4每标本/每种染色</div>
-      </div>
-      <div class="price">560.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">冷冻切片病理诊断</div>
-        <div class="detail">[单价]200.0000*[数量]1冷冻块</div>
-      </div>
-      <div class="price">200.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">无创血压监测</div>
-        <div class="detail">[单价]2.0000*[数量]6.38小时</div>
-      </div>
-      <div class="price">12.76 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">无创心电监测</div>
-        <div class="detail">[单价]4.0000*[数量]6.38小时</div>
-      </div>
-      <div class="price">25.52 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">无创指脉血氧饱和度监测</div>
-        <div class="detail">[单价]5.0000*[数量]6.38小时</div>
-      </div>
-      <div class="price">31.90 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">临床操作CT引导</div>
-        <div class="detail">[单价]160.0000*[数量]1半小时</div>
-      </div>
-      <div class="price">160.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">单独滴染HE染色</div>
-        <div class="detail">[单价]50.0000*[数量]5每蜡块</div>
-      </div>
-      <div class="price">250.00 元</div>
-    </div>
+.iw-cm-menu li:last-child {
+    border-bottom-left-radius: 11px !important;
+    border-bottom-right-radius: 11px !important;
+    border-bottom: none !important;
+}
 
-    <!-- 化验费 -->
-    <div class="category-header">化验费</div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">全自动病理组织特殊染色</div>
-        <div class="detail">[单价]140.0000*[数量]1次</div>
-      </div>
-      <div class="price">140.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">血气分析</div>
-        <div class="detail">[单价]100.0000*[数量]2次</div>
-      </div>
-      <div class="price">200.00 元</div>
-    </div>
+.iw-mOverlay {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0px !important;
+    left: 0px !important;
+    background: #FFF !important;
+    opacity: .5 !important;
+}
 
-    <!-- 治疗费 -->
-    <div class="category-header">治疗费</div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">动脉穿刺置管术</div>
-        <div class="detail">[单价]80.0000*[数量]1次</div>
-      </div>
-      <div class="price">80.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">可视喉镜辅助下气管插管术</div>
-        <div class="detail">[单价]180.0000*[数量]1次</div>
-      </div>
-      <div class="price">180.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">静脉输液以两瓶为基价，每增加一瓶加收</div>
-        <div class="detail">[单价]3.0000*[数量]2次</div>
-      </div>
-      <div class="price">6.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">静脉注射</div>
-        <div class="detail">[单价]6.0000*[数量]4次</div>
-      </div>
-      <div class="price">24.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">静脉采血</div>
-        <div class="detail">[单价]8.0000*[数量]1次</div>
-      </div>
-      <div class="price">8.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">静脉留置针封管</div>
-        <div class="detail">[单价]8.0000*[数量]3次</div>
-      </div>
-      <div class="price">24.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">静脉输液</div>
-        <div class="detail">[单价]11.0000*[数量]3次</div>
-      </div>
-      <div class="price">33.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">静脉用药集中调配</div>
-        <div class="detail">[单价]5.0000*[数量]7袋</div>
-      </div>
-      <div class="price">35.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">经皮穿刺术前标记物植入术</div>
-        <div class="detail">[单价]635.0000*[数量]1次</div>
-      </div>
-      <div class="price">635.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">吸入（中心给氧）</div>
-        <div class="detail">[单价]4.0000*[数量]5.38小时</div>
-      </div>
-      <div class="price">21.52 元</div>
-    </div>
+.iw-contextMenu li.iw-mDisable {
+    opacity: 0.3 !important;
+    cursor: default !important;
+}
 
-    <!-- 手术费 -->
-    <div class="category-header">手术费</div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">胸腔镜</div>
-        <div class="detail">[单价]500.0000*[数量]1人次</div>
-      </div>
-      <div class="price">500.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">肺楔形切除术</div>
-        <div class="detail">[单价]2710.0000*[数量].5次</div>
-      </div>
-      <div class="price">13550.00 元</div>
-    </div>
+.iw-mSelected {
+    background-color: #F6F6F6 !important;
+}
+
+.dark-mode .iw-mSelected, .TnITTtw-dark-mode .iw-mSelected {
+    background-color: #676766 !important;
+}
+
+.iw-cm-arrow-right {
+    width: 0 !important;
+    height: 0 !important;
+    border-top: 5px solid transparent !important;
+    border-bottom: 5px solid transparent !important;
+    border-left: 5px solid #000 !important;
+    position: absolute !important;
+    right: 5px !important;
+    top: 50% !important;
+    margin-top: -5px !important;
+}
+
+.dark-mode .iw-cm-arrow-right, .TnITTtw-dark-mode .iw-cm-arrow-right {
+    border-left-color: #FFF !important;
+}
+
+.iw-mSelected > .iw-cm-arrow-right {
+}
+
+/*context menu css end */</style><style type="text/css">.ui_selector, .TnITTtw-ui_selector {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif;
+    display: inline-block;
+}
+
+.ui_selector .select, .TnITTtw-ui_selector .TnITTtw-select {
+    color: #000;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid rgba(200, 199, 204, 0.5);
+    padding: 10px 15px;
+    width: 201px;
+    -webkit-user-select: none;
+    cursor: pointer;
+    border-radius: 11px;
+    display: inline-block;
+    background-image: -webkit-linear-gradient(top, #FAFAFA, #F6F6F6);
+    background-image: -moz-linear-gradient(top, #FAFAFA, #F6F6F6);
+    background-size: auto 48px;
+    background-position: 0px -11px;
+    box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.10);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dark-mode .ui_selector .select, 
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-select {
+    background-image: -webkit-linear-gradient(top, #4A4A49, #40403F);
+    background-image: -moz-linear-gradient(top, #4A4A49, #40403F);
+    color: #FFF;
+    border-color: #747473;
+}
+
+.ui_selector .select:hover,
+.TnITTtw-ui_selector .TnITTtw-select:hover {
+    color: #424242;
+    background-image: -webkit-linear-gradient(top, #FAFAFA, #FAFAFA);
+    background-image: -moz-linear-gradient(top, #FAFAFA, #FAFAFA);
+}
+
+.ui_selector .select:active,
+.TnITTtw-ui_selector .TnITTtw-select:active {
+    color: #6d6d72;
+    background-image: -webkit-linear-gradient(top, #F6F6F6, #F6F6F6);
+    background-image: -moz-linear-gradient(top, #F6F6F6, #F6F6F6);
+}
+
+.dark-mode .ui_selector .select:hover,
+.dark-mode .ui_selector .select:active,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-select:hover,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-select:active {
+    background-image: -webkit-linear-gradient(top, #4A4A49, #4A4A49);
+    background-image: -moz-linear-gradient(top, #4A4A49, #4A4A49);
+    color: #FFF;
+    border-color: #747473;
+}
+
+.ui_selector .select .detected-ico,
+.TnITTtw-ui_selector .TnITTtw-select .TnITTtw-detected-ico {
+    display: inline-block;
+}
+
+.ui_selector .active, .ui_selector .active:hover, .ui_selector .active:active,
+.TnITTtw-ui_selector .TnITTtw-active, .TnITTtw-ui_selector .TnITTtw-active:hover, .TnITTtw-ui_selector .TnITTtw-active:active {
+    box-shadow: 0 -1px 15px -10px rgba(0, 0, 0, 0.85) !important;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background: #F3F3F3;
+}
+
+.sliding-text,
+.TnITTtw-sliding-text {
+    position: relative;
+}
+
+.ui_selector .options,
+.TnITTtw-ui_selector .TnITTtw-options {
+    margin-left: 0px;
+    margin-top: -4px;
+    background: #fff;
+    border: 1px solid rgba(200, 199, 204, 0.5);
+    width: 231px;
+    overflow: hidden;
+    max-height: 313px;
+    position: absolute;
+    font-size: 12px;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 25%);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    display: none;
+}
+
+.ui_selector .options.standalone,
+.TnITTtw-ui_selector .TnITTtw-options.TnITTtw-standalone {
+    border-radius: 11px;
+    margin-top: 16px;
+}
+
+/* for now, it can only be on the top */
+.ui_selector .options-arrow,
+.TnITTtw-ui_selector .TnITTtw-options-arrow {
+    display: none;
+    position: absolute;
+    width: 32px !important;
+    height: 18px !important;
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/tt-dropdown-arrow.png);
+    background-size: 32px 18px;
+    transform: rotate(180deg);
+    margin-top: -1px;
+}
+
+.dark-mode .ui_selector .options-arrow,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-options-arrow {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/tt-dropdown-arrow-dark.png);
+}
+
+.dark-mode .ui_selector .options,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-options {
+    background: #525251;
+}
+
+.ui_selector .options ul,
+.TnITTtw-ui_selector .TnITTtw-options ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 232px;
+}
+
+.ui_selector .options ul li,
+.TnITTtw-ui_selector .TnITTtw-options ul li {
+    padding: 10px 0px;
+    -webkit-user-select: none;
+    text-align: center;
+    font-size: 17px;
+    -webkit-transition: all 600ms cubic-bezier(0.23, 1, 0.32, 1);
+    margin: 0 10px;
+    border-radius: 6px;
+    position: relative;
+}
+
+.dark-mode .options ul li,
+.TnITTtw-dark-mode .TnITTtw-options ul li {
+    color: #fff;
+}
+
+.ui_selector .options ul li:last-child,
+.TnITTtw-ui_selector .TnITTtw-options ul li:last-child {
+    margin-bottom: 16px;
+}
+
+.ui_selector .options ul li.option:first-child,
+.ui_selector .options ul li.option_selected:first-child,
+.TnITTtw-ui_selector .TnITTtw-options ul li.TnITTtw-option:first-child,
+.TnITTtw-ui_selector .TnITTtw-options ul li.TnITTtw-option_selected:first-child {
+    margin-top: 16px;
+}
+
+.ui_selector .options ul li.whenHover,
+.TnITTtw-ui_selector .TnITTtw-options ul li.TnITTtw-whenHover {
+    cursor: pointer;
+    background: #f3f3f3;
+    text-align: center;
+}
+
+.dark-mode .ui_selector .options ul li.whenHover,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-options ul li.TnITTtw-whenHover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.ui_selector .options ul li.option_selected,
+.TnITTtw-ui_selector .TnITTtw-options ul li.TnITTtw-option_selected {
+    cursor: pointer;
+    background-image: linear-gradient(145deg, #01EF92, #00D8FB),
+    linear-gradient(35deg, rgba(1, 239, 146, 0.25), rgba(0, 216, 251, 0.25)) !important;
+    color: #fff;
+    font-weight: 600;
+}
+
+.ui_selector .options ul .group,
+.ui_selector .options ul .group:hover,
+.ui_selector .options ul .group.whenHover,
+.TnITTtw-ui_selector .TnITTtw-options ul .TnITTtw-group,
+.TnITTtw-ui_selector .TnITTtw-options ul .TnITTtw-group:hover,
+.TnITTtw-ui_selector .TnITTtw-options ul .TnITTtw-group.whenHover {
+    padding: 16px 10px;
+    color: #8e8e93;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    text-align: center;
+    cursor: default;
+    background: #FFF;
+}
+
+.dark-mode .ui_selector .options ul .group,
+.dark-mode .ui_selector .options ul .group:hover,
+.dark-mode .ui_selector .options ul .group.whenHover,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-options ul .TnITTtw-group,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-options ul .TnITTtw-group:hover,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-options ul .TnITTtw-group.TnITTtw-whenHover {
+    color: #98989D;
+    background: #525251;
+}
+
+.group-element,
+.TnITTtw-group-element {
+    width: 153px;
+}
+
+.options .dd-search,
+.TnITTtw-options .TnITTtw-dd-search {
+    border-bottom: 1px solid rgba(200, 199, 204, 0.5);
+}
+
+.dark-mode .options .dd-search,
+.TnITTtw-dark-mode .TnITTtw-options .TnITTtw-dd-search {
+    border-bottom-color: #747473;
+}
+
+.dd-search .dd-input,
+.TnITTtw-dd-search .TnITTtw-dd-input {
+    padding: 16px;
+    padding-left: calc(16px * 3);
+    width: 168px;
+    border: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif;
+    text-align: left;
+    color: #000;
+    font-size: 17px;
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/searchfield-icon.png);
+    background-position: 16px;
+    background-size: 16px;
+    background-repeat: no-repeat;
+    margin: 0;
+    height: auto;
+}
+
+.dark-mode .dd-search .dd-input,
+.TnITTtw-dark-mode .TnITTtw-dd-search .TnITTtw-dd-input {
+    color: #FFF;
+    background-color: #525251;
+}
+
+.dd-search .dd-input:focus,
+.TnITTtw-dd-search .TnITTtw-dd-input:focus {
+    -webkit-transition: all 275ms cubic-bezier(0.23, 1, 0.32, 1);
+    outline: none;
+    text-align: left;
+}
+
+.dd-input::-webkit-input-placeholder,
+.TnITTtw-dd-input::-webkit-input-placeholder {
+    color: #8e8e93;
+}
+
+.search-failed-plaque,
+.TnITTtw-search-failed-plaque {
+    text-align: center;
+    padding: 20px;
+    color: #8e8e93;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.dark-mode .search-failed-plaque,
+.TnITTtw-dark-mode .TnITTtw-search-failed-plaque {
+    color: #98989D;
+}
+
+.rm-recent,
+.TnITTtw-rm-recent {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/regular-lang-remove.png);
+    background-size: 10px 10px;
+    top: 15px;
+    right: 10px;
+}
+
+.rm-recent:hover,
+.TnITTtw-rm-recent:hover {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/hover-lang-remove.png);
+}
+
+.rm-recent:active,
+.TnITTtw-rm-recent:active {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/down-lang-remove.png);
+}
+
+.option_selected .rm-recent,
+.TnITTtw-option_selected .TnITTtw-rm-recent {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/down-active-lang-remove.png);
+}
+
+.option_selected .rm-recent:hover,
+.TnITTtw-option_selected .TnITTtw-rm-recent:hover {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/hover-active-lang-remove.png);
+}
+
+.option_selected .rm-recent:active,
+.TnITTtw-option_selected .TnITTtw-rm-recent:active {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/down-active-lang-remove.png);
+}
+
+.TnITTtw-hidden {
+    display: none;
+}</style><style type="text/css">@-webkit-keyframes load4 {
+    0%,
+    100% {
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+    }
+    12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    25% {
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    }
+    75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    }
+    87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    }
+}
+
+@keyframes load4 {
+    0%,
+    100% {
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+    }
+    12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    25% {
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    }
+    75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    }
+    87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    }
+}</style><style type="text/css">/* This is not a zero-length file! */</style><style type="text/css">.TnITTtw-fp-collapsed-button {
+    display: none;
+    position: fixed !important;
+    top: 16px !important;
+    right: 16px !important;
+}
+
+.TnITTtw-fp-collapsed-button:hover {
+    opacity: 1.0 !important;
+}
+
+.TnITTtw-mate-fp-bar {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif !important;
+    color: #000;
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 999;
+    background: rgb(255 255 255 / 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 16px;
+    border-radius: 11px;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 25%);
+    width: 320px;
+    line-height: initial;
+}
+
+@-moz-document url-prefix() {
+    .TnITTtw-mate-fp-bar {
+        background: rgb(255 255 255 / 1.0);
+    }
+}
+
+.TnITTtw-mate-fp-bar.TnITTtw-dark-mode {
+    background: rgb(44, 44, 43);
+}
+
+.TnITTtw-hide-fp-bar {
+    width: 12px;
+    height: 12px;
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/regular-close-tt.png) !important;
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+}
+
+.TnITTtw-hide-fp-bar:hover {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/hover-close-tt.png) !important;
+}
+
+.TnITTtw-current-page-lang {
+    color: #6d6d72;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.TnITTtw-dark-mode .TnITTtw-current-page-lang {
+    color: #98989D;
+}
+
+.TnITTtw-fp-translate {
+    width: calc(100% - 73px) !important;
+    font-size: 14px !important;
+    text-transform: none !important;
+}
+
+.TnITTtw-fp-translate.TnITTtw-in-progress {
+    animation-name: funky-bg;
+    animation-duration: 10s;
+    animation-timing-function: ease-in;
+}
+
+.TnITTtw-fp-translate.TnITTtw-show-original {
+    width: calc(100% - 20px) !important;
+}
+
+@keyframes funky-bg {
+    from {
+        background-image: linear-gradient(145deg, #01EF92, #00D8FB),
+        linear-gradient(35deg, rgba(1, 239, 146, 0.25), rgba(0, 216, 251, 0.25)) !important;
+    }
+
+    to {
+        background-image: linear-gradient(90deg, #01EF92, #00D8FB),
+        linear-gradient(35deg, rgba(1, 239, 146, 0.25), rgba(0, 216, 251, 0.25)) !important;
+    }
+}
+
+.TnITTtw-change-language, .TnITTtw-stop-fp {
+    width: 38px;
+    height: 38px;
+    background-color: #EFEFF4;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
+    border-radius: 11px;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.TnITTtw-change-language {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/globe-earth.png) !important;
+}
+
+.TnITTtw-dark-mode .TnITTtw-change-language {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/globe-earth-dark.png) !important;
+}
+
+.TnITTtw-stop-fp {
+    display: none;
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/regular-stt-stop.png) !important;
+    background-size: 12px 12px;
+}
+
+.TnITTtw-dark-mode .TnITTtw-change-language, .TnITTtw-dark-mode .TnITTtw-stop-fp {
+    background-color: #525251 !important;
+}
+
+.TnITTtw-change-language:hover, .TnITTtw-stop-fp:hover {
+    background-color: #F6F6F6;
+}
+
+.TnITTtw-change-language:active, .TnITTtw-stop-fp:active {
+    background-color: #E9E9E9;
+}
+
+.TnITTtw-dark-mode .TnITTtw-change-language:hover,
+.TnITTtw-dark-mode .TnITTtw-stop-fp:hover,
+.TnITTtw-dark-mode .TnITTtw-change-language:active,
+.TnITTtw-dark-mode .TnITTtw-stop-fp:active {
+    background-color: #767675;
+}
+
+#TnITTtw-always-translate {
+}
+
+.TnITTtw-fp-options input {
+    padding: initial;
+    width: auto;
+    border: initial;
+    box-shadow: initial;
+    line-height: initial;
+    height: auto;
+    display: initial;
+    position: initial;
+    appearance: auto;
+    top: initial;
+    cursor: pointer;
+    margin: 0;
+}
+
+.TnITTtw-fp-options input[readonly="readonly"] {
+    opacity: 0.5;
+}
+
+#TnITTtw-always-translate + label,
+#TnITTtw-never-translate-lang + label,
+#TnITTtw-never-translate-site + label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif !important;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 14px;
+    margin-left: 4px;
+    color: #000;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 296px;
+    vertical-align: top;
+    line-height: initial;
+    letter-spacing: initial;
+    text-transform: initial;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+#TnITTtw-always-translate + label::before,
+#TnITTtw-never-translate-lang + label::before,
+#TnITTtw-never-translate-site + label::before,
+#TnITTtw-always-translate + label::after,
+#TnITTtw-never-translate-lang + label::after,
+#TnITTtw-never-translate-site + label::after  {
+    content: initial;
+} 
+
+.TnITTtw-always-translate-inner-label {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 252px;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.TnITTtw-dark-mode #TnITTtw-always-translate + label,
+.TnITTtw-dark-mode #TnITTtw-never-translate-lang + label,
+.TnITTtw-dark-mode #TnITTtw-never-translate-site + label {
+    color: #FFF;
+}
+
+#TnITTtw-always-translate + label.TnITTtw-not-pro {
+    opacity: 0.5;
+}
+
+#TnITTtw-always-translate + label .TnITTtw-pro-label {
+    position: relative;
+    background: #000;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #FFF;
+    padding: 2px 5px;
+    border-radius: 4px;
+    margin-left: 10px;
+    top: -1px;
+    user-select: none;
+    -webkit-user-select: none;
+    display: inline;
+    font-weight: 500;
+}
+
+.TnITTtw-dark-mode #TnITTtw-always-translate + label .TnITTtw-pro-label {
+    background: #FFF;
+    color: #000;
+}
+
+.TnITTtw-inline-original-tooltip {
+    display: none;
+    position: absolute;
+    margin: 0px;
+    border: none;
+    padding: 16px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255 255 255 / 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 11px;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 25%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: normal;
+}
+
+.TnITTtw-dark-mode.TnITTtw-inline-original-tooltip {
+    background-color: rgb(0 0 0 / 0.915);
+    color: #FFF;
+}
+
+.TnITTtw-inline-original-tooltip .TnITTtw-close-original-tooltip {
+    width: 12px;
+    height: 12px;
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/regular-close-tt.png) !important;
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+}
+
+.TnITTtw-inline-original-tooltip .TnITTtw-close-original-tooltip:hover {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/hover-close-tt.png) !important;
+}
+
+.TnITTtw-inline-original-tooltip .TnITTtw-original-label {
+    margin: 0;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #6d6d72;
+    margin-bottom: 10px;
+}
+
+.TnITTtw-inline-original-tooltip.TnITTtw-dark-mode .TnITTtw-original-label {
+    color: #98989D;
+}
+
+.TnITTtw-inline-original-tooltip .TnITTtw-text-layout {
+    display: inline-block;
+    margin: 0;
+    font-size: 16px;
+    color: #000;
+}
+
+.TnITTtw-inline-original-tooltip.TnITTtw-dark-mode .TnITTtw-text-layout {
+    color: #FFF;
+}
+
+.TnITTtw-highlighted-for-original {
+    color: #0F0F5F;
+    background-color: #F0F0A0;
+}
+
+/* Dropdown scrollbars */
+
+#selVisibleScroll-1, #selVisibleScroll-2, #selVisibleScroll-3 {
+    overflow: hidden;
+    height: 259px;
+    width: 100%;
+    position: relative;
+}
+
+#sel-scrollbar-1, #sel-scrollbar-2, #sel-scrollbar-3 {
+    position: absolute;
+    width: 4px;
+    height: 259px;
+    left: 225px;
+}
+
+#sel-track-1, #sel-track-2, #sel-track-3 {
+    position: absolute;
+    top: 1px;
+    width: 4px;
+    height: calc(100% - 6px);
+}
+
+#sel-dragBar-1, #sel-dragBar-2, #sel-dragBar-3 {
+    position: absolute;
+    top: 1px;
+    width: 4px;
+    background: rgba(43, 43, 43, 0.5);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.dark-mode #sel-dragBar-1, .dark-mode #sel-dragBar-2, .dark-mode #sel-dragBar-3 {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+#sel-dragBar-1:hover, #sel-dragBar-2:hover, #sel-dragBar-3:hover, 
+#sel-dragBar-1:active, #sel-dragBar-2:active, #sel-dragBar-3:active {
+    background: rgba(43, 43, 43, 0.675);
+}
+
+.dark-mode #sel-dragBar-1:hover,
+.dark-mode #sel-dragBar-2:hover,
+.dark-mode #sel-dragBar-3:hover,
+.dark-mode #sel-dragBar-1:active,
+.dark-mode #sel-dragBar-2:active,
+.dark-mode #sel-dragBar-3:active {
+    background: rgba(255, 255, 255, 0.675);
+}
+
+#sel-scrollbar-1, #sel-track-1, #sel-dragBar-1, 
+#sel-scrollbar-2, #sel-track-2, #sel-dragBar-2,
+#sel-scrollbar-3, #sel-track-3, #sel-dragBar-3 {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Spinner for when it's translating a page */
+
+.TnITTtw-cta-button-layout {
+    position: relative;
+    display: inline;
+}
+
+.TnITTtw-spinner {
+    display: none;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+}
+  
+  @media screen and (max-width: 800px) {
+    .TnITTtw-spinner {
+      top: 28px;
+    }
+  }
+
+  .TnITTtw-spinner.in-text {
+    display: block;
+    background: transparent;
+    position: initial;
+  }
+
+  .TnITTtw-spinner.left {
+    text-align: left;
+  }
+  
+  .TnITTtw-spinner > div {
+    width: 12px;
+    height: 12px;
+    background-color: rgb(0, 71, 46);
+  
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  }
+
+  .TnITTtw-spinner.in-text > div {
+    background-color: #000;
+  }
+  
+  .TnITTtw-spinner .TnITTtw-bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+  }
+  
+  .TnITTtw-spinner .TnITTtw-bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+  }
+  
+  @-webkit-keyframes sk-bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0) }
+    40% { -webkit-transform: scale(1.0) }
+  }
+  
+  @keyframes sk-bouncedelay {
+    0%, 80%, 100% { 
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    } 40% { 
+      -webkit-transform: scale(1.0);
+      transform: scale(1.0);
+    }
+  }</style><style type="text/css">/*
+ * contextMenu.js v 1.4.0
+ * Author: Sudhanshu Yadav
+ * s-yadav.github.com
+ * Copyright (c) 2013 Sudhanshu Yadav.
+ * Dual licensed under the MIT and GPL licenses
+**/
+
+.iw-contextMenu {
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.10) !important;
+    border: 1px solid #c8c7cc !important;
+    border-radius: 11px !important;
+    display: none;
+    z-index: 1000000132;
+    max-width: 300px !important;
+    width: auto !important;
+}
+
+.dark-mode .iw-contextMenu,
+.TnITTtw-dark-mode.iw-contextMenu,
+.TnITTtw-dark-mode .iw-contextMenu {
+    border-color: #747473 !important;
+}
+
+.iw-cm-menu {
+    background: #fff !important;
+    color: #000 !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    overflow: visible !important;
+}
+
+.dark-mode .iw-cm-menu,
+.TnITTtw-dark-mode.iw-cm-menu,
+.TnITTtw-dark-mode .iw-cm-menu {
+    background: #525251 !important;
+    color: #FFF !important;
+}
+
+.iw-curMenu {
+}
+
+.iw-cm-menu li {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif !important;
+    list-style: none !important;
+    padding: 10px !important;
+    padding-right: 20px !important;
+    border-bottom: 1px solid #c8c7cc !important;
+    font-weight: 400 !important;
+    cursor: pointer !important;
+    position: relative !important;
+    font-size: 14px !important;
+    margin: 0 !important;
+    line-height: inherit !important;
+    border-radius: 0 !important;
+    display: block !important;
+}
+
+.dark-mode .iw-cm-menu li, .TnITTtw-dark-mode .iw-cm-menu li {
+    border-bottom-color: #747473 !important;
+}
+
+.iw-cm-menu li:first-child {
+    border-top-left-radius: 11px !important;
+    border-top-right-radius: 11px !important;
+}
+
+.iw-cm-menu li:last-child {
+    border-bottom-left-radius: 11px !important;
+    border-bottom-right-radius: 11px !important;
+    border-bottom: none !important;
+}
+
+.iw-mOverlay {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0px !important;
+    left: 0px !important;
+    background: #FFF !important;
+    opacity: .5 !important;
+}
+
+.iw-contextMenu li.iw-mDisable {
+    opacity: 0.3 !important;
+    cursor: default !important;
+}
+
+.iw-mSelected {
+    background-color: #F6F6F6 !important;
+}
+
+.dark-mode .iw-mSelected, .TnITTtw-dark-mode .iw-mSelected {
+    background-color: #676766 !important;
+}
+
+.iw-cm-arrow-right {
+    width: 0 !important;
+    height: 0 !important;
+    border-top: 5px solid transparent !important;
+    border-bottom: 5px solid transparent !important;
+    border-left: 5px solid #000 !important;
+    position: absolute !important;
+    right: 5px !important;
+    top: 50% !important;
+    margin-top: -5px !important;
+}
+
+.dark-mode .iw-cm-arrow-right, .TnITTtw-dark-mode .iw-cm-arrow-right {
+    border-left-color: #FFF !important;
+}
+
+.iw-mSelected > .iw-cm-arrow-right {
+}
+
+/*context menu css end */</style><style type="text/css">.ui_selector, .TnITTtw-ui_selector {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif;
+    display: inline-block;
+}
+
+.ui_selector .select, .TnITTtw-ui_selector .TnITTtw-select {
+    color: #000;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid rgba(200, 199, 204, 0.5);
+    padding: 10px 15px;
+    width: 201px;
+    -webkit-user-select: none;
+    cursor: pointer;
+    border-radius: 11px;
+    display: inline-block;
+    background-image: -webkit-linear-gradient(top, #FAFAFA, #F6F6F6);
+    background-image: -moz-linear-gradient(top, #FAFAFA, #F6F6F6);
+    background-size: auto 48px;
+    background-position: 0px -11px;
+    box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.10);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dark-mode .ui_selector .select, 
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-select {
+    background-image: -webkit-linear-gradient(top, #4A4A49, #40403F);
+    background-image: -moz-linear-gradient(top, #4A4A49, #40403F);
+    color: #FFF;
+    border-color: #747473;
+}
+
+.ui_selector .select:hover,
+.TnITTtw-ui_selector .TnITTtw-select:hover {
+    color: #424242;
+    background-image: -webkit-linear-gradient(top, #FAFAFA, #FAFAFA);
+    background-image: -moz-linear-gradient(top, #FAFAFA, #FAFAFA);
+}
+
+.ui_selector .select:active,
+.TnITTtw-ui_selector .TnITTtw-select:active {
+    color: #6d6d72;
+    background-image: -webkit-linear-gradient(top, #F6F6F6, #F6F6F6);
+    background-image: -moz-linear-gradient(top, #F6F6F6, #F6F6F6);
+}
+
+.dark-mode .ui_selector .select:hover,
+.dark-mode .ui_selector .select:active,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-select:hover,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-select:active {
+    background-image: -webkit-linear-gradient(top, #4A4A49, #4A4A49);
+    background-image: -moz-linear-gradient(top, #4A4A49, #4A4A49);
+    color: #FFF;
+    border-color: #747473;
+}
+
+.ui_selector .select .detected-ico,
+.TnITTtw-ui_selector .TnITTtw-select .TnITTtw-detected-ico {
+    display: inline-block;
+}
+
+.ui_selector .active, .ui_selector .active:hover, .ui_selector .active:active,
+.TnITTtw-ui_selector .TnITTtw-active, .TnITTtw-ui_selector .TnITTtw-active:hover, .TnITTtw-ui_selector .TnITTtw-active:active {
+    box-shadow: 0 -1px 15px -10px rgba(0, 0, 0, 0.85) !important;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background: #F3F3F3;
+}
+
+.sliding-text,
+.TnITTtw-sliding-text {
+    position: relative;
+}
+
+.ui_selector .options,
+.TnITTtw-ui_selector .TnITTtw-options {
+    margin-left: 0px;
+    margin-top: -4px;
+    background: #fff;
+    border: 1px solid rgba(200, 199, 204, 0.5);
+    width: 231px;
+    overflow: hidden;
+    max-height: 313px;
+    position: absolute;
+    font-size: 12px;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 25%);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    display: none;
+}
+
+.ui_selector .options.standalone,
+.TnITTtw-ui_selector .TnITTtw-options.TnITTtw-standalone {
+    border-radius: 11px;
+    margin-top: 16px;
+}
+
+/* for now, it can only be on the top */
+.ui_selector .options-arrow,
+.TnITTtw-ui_selector .TnITTtw-options-arrow {
+    display: none;
+    position: absolute;
+    width: 32px !important;
+    height: 18px !important;
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/tt-dropdown-arrow.png);
+    background-size: 32px 18px;
+    transform: rotate(180deg);
+    margin-top: -1px;
+}
+
+.dark-mode .ui_selector .options-arrow,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-options-arrow {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/tt-dropdown-arrow-dark.png);
+}
+
+.dark-mode .ui_selector .options,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-options {
+    background: #525251;
+}
+
+.ui_selector .options ul,
+.TnITTtw-ui_selector .TnITTtw-options ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 232px;
+}
+
+.ui_selector .options ul li,
+.TnITTtw-ui_selector .TnITTtw-options ul li {
+    padding: 10px 0px;
+    -webkit-user-select: none;
+    text-align: center;
+    font-size: 17px;
+    -webkit-transition: all 600ms cubic-bezier(0.23, 1, 0.32, 1);
+    margin: 0 10px;
+    border-radius: 6px;
+    position: relative;
+}
+
+.dark-mode .options ul li,
+.TnITTtw-dark-mode .TnITTtw-options ul li {
+    color: #fff;
+}
+
+.ui_selector .options ul li:last-child,
+.TnITTtw-ui_selector .TnITTtw-options ul li:last-child {
+    margin-bottom: 16px;
+}
+
+.ui_selector .options ul li.option:first-child,
+.ui_selector .options ul li.option_selected:first-child,
+.TnITTtw-ui_selector .TnITTtw-options ul li.TnITTtw-option:first-child,
+.TnITTtw-ui_selector .TnITTtw-options ul li.TnITTtw-option_selected:first-child {
+    margin-top: 16px;
+}
+
+.ui_selector .options ul li.whenHover,
+.TnITTtw-ui_selector .TnITTtw-options ul li.TnITTtw-whenHover {
+    cursor: pointer;
+    background: #f3f3f3;
+    text-align: center;
+}
+
+.dark-mode .ui_selector .options ul li.whenHover,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-options ul li.TnITTtw-whenHover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.ui_selector .options ul li.option_selected,
+.TnITTtw-ui_selector .TnITTtw-options ul li.TnITTtw-option_selected {
+    cursor: pointer;
+    background-image: linear-gradient(145deg, #01EF92, #00D8FB),
+    linear-gradient(35deg, rgba(1, 239, 146, 0.25), rgba(0, 216, 251, 0.25)) !important;
+    color: #fff;
+    font-weight: 600;
+}
+
+.ui_selector .options ul .group,
+.ui_selector .options ul .group:hover,
+.ui_selector .options ul .group.whenHover,
+.TnITTtw-ui_selector .TnITTtw-options ul .TnITTtw-group,
+.TnITTtw-ui_selector .TnITTtw-options ul .TnITTtw-group:hover,
+.TnITTtw-ui_selector .TnITTtw-options ul .TnITTtw-group.whenHover {
+    padding: 16px 10px;
+    color: #8e8e93;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    text-align: center;
+    cursor: default;
+    background: #FFF;
+}
+
+.dark-mode .ui_selector .options ul .group,
+.dark-mode .ui_selector .options ul .group:hover,
+.dark-mode .ui_selector .options ul .group.whenHover,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-options ul .TnITTtw-group,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-options ul .TnITTtw-group:hover,
+.TnITTtw-dark-mode .TnITTtw-ui_selector .TnITTtw-options ul .TnITTtw-group.TnITTtw-whenHover {
+    color: #98989D;
+    background: #525251;
+}
+
+.group-element,
+.TnITTtw-group-element {
+    width: 153px;
+}
+
+.options .dd-search,
+.TnITTtw-options .TnITTtw-dd-search {
+    border-bottom: 1px solid rgba(200, 199, 204, 0.5);
+}
+
+.dark-mode .options .dd-search,
+.TnITTtw-dark-mode .TnITTtw-options .TnITTtw-dd-search {
+    border-bottom-color: #747473;
+}
+
+.dd-search .dd-input,
+.TnITTtw-dd-search .TnITTtw-dd-input {
+    padding: 16px;
+    padding-left: calc(16px * 3);
+    width: 168px;
+    border: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, Ubuntu, sans-serif;
+    text-align: left;
+    color: #000;
+    font-size: 17px;
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/searchfield-icon.png);
+    background-position: 16px;
+    background-size: 16px;
+    background-repeat: no-repeat;
+    margin: 0;
+    height: auto;
+}
+
+.dark-mode .dd-search .dd-input,
+.TnITTtw-dark-mode .TnITTtw-dd-search .TnITTtw-dd-input {
+    color: #FFF;
+    background-color: #525251;
+}
+
+.dd-search .dd-input:focus,
+.TnITTtw-dd-search .TnITTtw-dd-input:focus {
+    -webkit-transition: all 275ms cubic-bezier(0.23, 1, 0.32, 1);
+    outline: none;
+    text-align: left;
+}
+
+.dd-input::-webkit-input-placeholder,
+.TnITTtw-dd-input::-webkit-input-placeholder {
+    color: #8e8e93;
+}
+
+.search-failed-plaque,
+.TnITTtw-search-failed-plaque {
+    text-align: center;
+    padding: 20px;
+    color: #8e8e93;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.dark-mode .search-failed-plaque,
+.TnITTtw-dark-mode .TnITTtw-search-failed-plaque {
+    color: #98989D;
+}
+
+.rm-recent,
+.TnITTtw-rm-recent {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/regular-lang-remove.png);
+    background-size: 10px 10px;
+    top: 15px;
+    right: 10px;
+}
+
+.rm-recent:hover,
+.TnITTtw-rm-recent:hover {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/hover-lang-remove.png);
+}
+
+.rm-recent:active,
+.TnITTtw-rm-recent:active {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/down-lang-remove.png);
+}
+
+.option_selected .rm-recent,
+.TnITTtw-option_selected .TnITTtw-rm-recent {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/down-active-lang-remove.png);
+}
+
+.option_selected .rm-recent:hover,
+.TnITTtw-option_selected .TnITTtw-rm-recent:hover {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/hover-active-lang-remove.png);
+}
+
+.option_selected .rm-recent:active,
+.TnITTtw-option_selected .TnITTtw-rm-recent:active {
+    background-image: url(chrome-extension://ihmgiclibbndffejedjimfjmfoabpcke/res/images/ui/down-active-lang-remove.png);
+}
+
+.TnITTtw-hidden {
+    display: none;
+}</style><style type="text/css">@-webkit-keyframes load4 {
+    0%,
+    100% {
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+    }
+    12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    25% {
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    }
+    75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    }
+    87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    }
+}
+
+@keyframes load4 {
+    0%,
+    100% {
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+    }
+    12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    25% {
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    }
+    75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    }
+    87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    }
+}</style><style type="text/css">/* This is not a zero-length file! */</style></head>
 
 
-    <!-- 西药费 -->
-    <div class="category-header">西药费</div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">氯化钠注射液[0.9% 90mg:10ml]</div>
-        <div class="detail">[单价]1.0000*[数量]5支</div>
-      </div>
-      <div class="price">5.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">灭菌注射用水[10ML]</div>
-        <div class="detail">[单价]0.9900*[数量]1支</div>
-      </div>
-      <div class="price">0.99 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">灭菌注射用水[500ml](石家庄)</div>
-        <div class="detail">[单价]3.0000*[数量]2瓶</div>
-      </div>
-      <div class="price">6.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">盐酸利多卡因胶浆（浙江）[10g:0.2g]</div>
-        <div class="detail">[单价]5.3980*[数量]1支</div>
-      </div>
-      <div class="price">5.40 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">0.9%氯化钠注射液(袋装)[50ml]</div>
-        <div class="detail">[单价]3.1000*[数量]2袋</div>
-      </div>
-      <div class="price">6.20 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">吸入用布地奈德混悬液(普米克令舒)[1mg:2ml]</div>
-        <div class="detail">[单价]12.9380*[数量]3支</div>
-      </div>
-      <div class="price">38.82 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">咪达唑仑注射液(力月西)[10mg:2ml]</div>
-        <div class="detail">[单价]25.1000*[数量]1支</div>
-      </div>
-      <div class="price">25.10 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">氟比洛芬酯注射液（安抚）(国家带量采购1)[5ML:50MG]</div>
-        <div class="detail">[单价]8.5200*[数量]2支</div>
-      </div>
-      <div class="price">17.04 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">酒石酸布托啡诺注射液(诺扬)[1mg:1ml]</div>
-        <div class="detail">[单价]29.5000*[数量]5支</div>
-      </div>
-      <div class="price">147.50 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">盐酸昂丹司琼注射液(欧贝)(国采七)[8MG:4ML]</div>
-        <div class="detail">[单价]10.2900*[数量]4支</div>
-      </div>
-      <div class="price">41.16 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">氨酚双氢可待因片(路盖克)[0.51g*24]</div>
-        <div class="detail">[单价]1.5975*[数量]3片</div>
-      </div>
-      <div class="price">4.80 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">盐酸戊乙奎醚注射液(长托宁)[1ML:1MG]</div>
-        <div class="detail">[单价]40.0000*[数量]1支</div>
-      </div>
-      <div class="price">40.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">枸橼酸舒芬太尼注射液[50UG:1ML]</div>
-        <div class="detail">[单价]50.6220*[数量]3支</div>
-      </div>
-      <div class="price">151.87 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">注射用尖吻蝮蛇血凝酶(苏灵)[1单位]</div>
-        <div class="detail">[单价]59.1500*[数量]2支</div>
-      </div>
-      <div class="price">118.30 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">0.9%氯化钠注射液(威高)(袋装)[250ml]</div>
-        <div class="detail">[单价]4.2700*[数量]1袋</div>
-      </div>
-      <div class="price">4.27 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">0.9%氯化钠注射液(威高)(袋装)[500ml:4.5g]</div>
-        <div class="detail">[单价]5.3200*[数量]2袋</div>
-      </div>
-      <div class="price">10.64 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">0.9%氯化钠注射液(威高)(袋装)[100ml:0.9g]</div>
-        <div class="detail">[单价]3.6500*[数量]8袋</div>
-      </div>
-      <div class="price">29.20 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">生理氯化钠溶液(塑瓶)(威高)[500ml:4.5g]</div>
-        <div class="detail">[单价]2.4400*[数量]2瓶</div>
-      </div>
-      <div class="price">4.88 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">羟乙基淀粉130/0.4氯化钠注射液(华仁)(省集采)[250ml：15G]</div>
-        <div class="detail">[单价]3.2300*[数量]2袋</div>
-      </div>
-      <div class="price">6.46 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">依诺肝素钠注射液(赛倍畅)(国采八)[0.4ml:4000AxaIU]</div>
-        <div class="detail">[单价]11.6500*[数量]1支</div>
-      </div>
-      <div class="price">11.65 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">多索茶碱注射液(奕佳)(国家带量采购4)[0.1g:10ml]</div>
-        <div class="detail">[单价]2.7800*[数量]4支</div>
-      </div>
-      <div class="price">11.12 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">注射用泮托拉唑钠(国家带量采购4)[40MG]</div>
-        <div class="detail">[单价]2.2700*[数量]2支</div>
-      </div>
-      <div class="price">4.54 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">注射用头孢唑林钠(卓征)(国家带量采购5)[1.0g]</div>
-        <div class="detail">[单价]4.9000*[数量]2支</div>
-      </div>
-      <div class="price">9.80 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">吸入用异丙托溴铵溶液(普吸宁)(国家带量采购5)[0.5mg:2ml]</div>
-        <div class="detail">[单价]0.8560*[数量]3支</div>
-      </div>
-      <div class="price">2.58 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">肝素钠注射液(省集采2)[12500IU:2ml]</div>
-        <div class="detail">[单价]4.5000*[数量]1支</div>
-      </div>
-      <div class="price">4.50 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">注射用甲泼尼龙琥珀酸钠(米乐松)(国采七)[40mg]</div>
-        <div class="detail">[单价]4.8400*[数量]1支</div>
-      </div>
-      <div class="price">4.84 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">盐酸氨溴索注射液(石家庄)(国采四)[30mg:4ml]</div>
-        <div class="detail">[单价]1.1700*[数量]2支</div>
-      </div>
-      <div class="price">2.34 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">丙泊酚中/长链脂肪乳注射液(国采四)[20ml:0.2g]</div>
-        <div class="detail">[单价]9.1900*[数量]1支</div>
-      </div>
-      <div class="price">9.19 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">托拉塞米注射液(通润)(国采八)[2ML:10MG]</div>
-        <div class="detail">[单价]1.9600*[数量]2支</div>
-      </div>
-      <div class="price">3.92 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">吸入用七氟烷(上海恒瑞）[120ML]</div>
-        <div class="detail">[单价]5.5166*[数量]15ML</div>
-      </div>
-      <div class="price">82.75 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">丙泊酚乳状注射液(迪施宁)(国采九)[20ml:200mg]</div>
-        <div class="detail">[单价]3.9300*[数量]2支</div>
-      </div>
-      <div class="price">7.86 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">硫酸阿托品注射液(国采九)[1ml:0.5mg]</div>
-        <div class="detail">[单价]0.3300*[数量]2支</div>
-      </div>
-      <div class="price">0.66 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">苯磺顺阿曲库铵注射(齐鲁)(国家带量采购)[5ml:10mg]</div>
-        <div class="detail">[单价]7.9800*[数量]2瓶</div>
-      </div>
-      <div class="price">15.96 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">乳酸钠林格注射液(国家带量采购)[500ml]</div>
-        <div class="detail">[单价]2.0500*[数量]1瓶</div>
-      </div>
-      <div class="price">2.05 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">甲硫酸新斯的明注射液（国采十）[1mg:2ml]</div>
-        <div class="detail">[单价]1.1100*[数量]2支</div>
-      </div>
-      <div class="price">2.22 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">依托咪酯中/长链脂肪乳注射液(省集采)[10ml:20mg]</div>
-        <div class="detail">[单价]30.5800*[数量]1支</div>
-      </div>
-      <div class="price">30.58 元</div>
-    </div>
+	
+<body data-new-gr-c-s-check-loaded="14.1087.0" data-gr-ext-installed="" contenteditable="false">
 
-    <!-- 卫生材料费 -->
-    <div class="category-header">卫生材料费</div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">可吸收再生氧化纤维素止血纱</div>
-        <div class="detail">[单价]388.5800*[数量]2片</div>
-      </div>
-      <div class="price">777.16 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">面罩(氧气管路)[OP03002/成人]</div>
-        <div class="detail">[单价]17.8000*[数量]1套</div>
-      </div>
-      <div class="price">17.80 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">特殊缝线（合成可吸收性外科缝线[POLYSORB/泰科][4-0]</div>
-        <div class="detail">[单价]166.2500*[数量]1包</div>
-      </div>
-      <div class="price">166.25 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">一次性使用套管穿刺针[单支装C12-1]</div>
-        <div class="detail">[单价]54.0000*[数量]1套</div>
-      </div>
-      <div class="price">54.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">带非吸收性外科缝线缝合针[JFJN]</div>
-        <div class="detail">[单价]28.0000*[数量]1包</div>
-      </div>
-      <div class="price">28.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">带非吸收性外科缝线缝合针[JFN]</div>
-        <div class="detail">[单价]28.0000*[数量]1包</div>
-      </div>
-      <div class="price">28.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">带非吸收性外科缝线缝合针[QJN]</div>
-        <div class="detail">[单价]28.0000*[数量]1包</div>
-      </div>
-      <div class="price">28.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">一次性使用湿化鼻氧管[I-200ml-成人双孔/驼人]</div>
-        <div class="detail">[单价]10.1600*[数量]1套</div>
-      </div>
-      <div class="price">10.16 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">一次性切口牵开固定器（装置）[HRB0707]</div>
-        <div class="detail">[单价]60.5500*[数量]1个</div>
-      </div>
-      <div class="price">60.55 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">腔镜手术切除组织收集器[TZ03-130]</div>
-        <div class="detail">[单价]244.0000*[数量]1把</div>
-      </div>
-      <div class="price">244.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">一次性使用血压传感器[DPT-248,产品编码：SCW-UTAH-01]</div>
-        <div class="detail">[单价]118.0000*[数量]1套</div>
-      </div>
-      <div class="price">118.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">可吸收性缝线[VCP751D/ETHICON]</div>
-        <div class="detail">[单价]160.0000*[数量]1包</div>
-      </div>
-      <div class="price">160.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">一次性使用腔镜直线切割吻合器及关节型切割组件[QJF155]</div>
-        <div class="detail">[单价]1164.0000*[数量]1把</div>
-      </div>
-      <div class="price">1164.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">一次性使用腔镜直线切割吻合器及关节型切割组件[FNL-A60×3.0]</div>
-        <div class="detail">[单价]762.0000*[数量]7个</div>
-      </div>
-      <div class="price">5334.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">一次性使用腔镜直线切割吻合器及关节型切割组件[FUL-A45×2.5]</div>
-        <div class="detail">[单价]762.0000*[数量]1个</div>
-      </div>
-      <div class="price">762.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">一次性使用腔镜直线切割吻合器及关节型切割组件[FNL-A60×4.0]</div>
-        <div class="detail">[单价]762.0000*[数量]2个</div>
-      </div>
-      <div class="price">1524.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">一次性使用腔镜直线切割吻合器及关节型切割组件[FNL-A30×2.5]</div>
-        <div class="detail">[单价]762.0000*[数量]2个</div>
-      </div>
-      <div class="price">1524.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">超声软组织切割止血设备--一次性使用超声刀头[SAS36]</div>
-        <div class="detail">[单价]1490.0000*[数量]1把</div>
-      </div>
-      <div class="price">1490.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">一次性使用体温传感器[HT01/海圣]</div>
-        <div class="detail">[单价]25.0000*[数量]1套</div>
-      </div>
-      <div class="price">25.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">一次性使用呼吸过滤器[A1 3100/华坤]</div>
-        <div class="detail">[单价]7.0000*[数量]1个</div>
-      </div>
-      <div class="price">7.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">一次性使用双腔支气管插管[Fr35 左侧双腔带指示气囊/亚美斯特]</div>
-        <div class="detail">[单价]58.5000*[数量]1支</div>
-      </div>
-      <div class="price">58.50 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">一次性使用三通[ST-02/安得]</div>
-        <div class="detail">[单价]1.8000*[数量]3个</div>
-      </div>
-      <div class="price">5.40 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">一次性使用肺结节定位针[SS511-10L]</div>
-        <div class="detail">[单价]590.0000*[数量]2支</div>
-      </div>
-      <div class="price">1180.00 元</div>
-    </div>
-
-    <!-- 护理费 -->
-    <div class="category-header">护理费</div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">I级护理</div>
-        <div class="detail">[单价]70.0000*[数量]1日</div>
-      </div>
-      <div class="price">70.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">引流管护理</div>
-        <div class="detail">[单价]12.0000*[数量]2管·日</div>
-      </div>
-      <div class="price">24.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">引流管护理-闭式引流护理（加收）</div>
-        <div class="detail">[单价]3.6000*[数量]1管·日</div>
-      </div>
-      <div class="price">3.60 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">压力性损伤护理</div>
-        <div class="detail">[单价]20.0000*[数量]1日</div>
-      </div>
-      <div class="price">20.00 元</div>
-    </div>
-
-    <!-- 麻醉 -->
-    <div class="category-header">麻醉</div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">麻醉恢复室监护</div>
-        <div class="detail">[单价]120.0000*[数量].58小时</div>
-      </div>
-      <div class="price">69.60 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">自控静脉镇痛治疗</div>
-        <div class="detail">[单价]200.0000*[数量]2日</div>
-      </div>
-      <div class="price">400.00 元</div>
-    </div>
-    <div class="fee-item">
-      <div class="info">
-        <div class="name">支气管内麻醉</div>
-        <div class="detail">[单价]1390.0000*[数量]1 2小时</div>
-      </div>
-      <div class="price">1390.00 元</div>
-    </div>
-
-  </div>
-
-  <!-- 底部固定栏 -->
-  <div class="bottom-bar">
-    <div class="total">
-      <span class="label">当前总计:</span><span class="amount">25370.91</span>
-    </div>
-    <div class="date-display">
-      <span class="calendar-icon" aria-hidden="true"></span>
-      <span>2026-6-10</span>
-    </div>
-  </div>
+<div class="topnav">
+<div id="container">
+  
+  
+  
+  <a class="active" href="https://chenziwenhaoshuai.github.io//">HOME</a>
+</div>
 </div>
 
+<div id="container">
 
-</body><div id="immersive-translate-popup" style="all: initial"><template shadowrootmode="open"><div id="mount" style="display: block;"></div></template></div></html>
+	
+	<div id="sys_txt_main" systemelement="true" class="sys_txt sys_text_widget new-text-widget">
+  
+<table width="960" border="0">
+  <tbody><tr>
+    
+    <td width="600">
+
+    	<p><strong>Ziwen Chen</strong></p>
+    <p><strong>Ph.D Associate</strong></p><p><strong>IEEE Member</strong></p>
+	
+      <p>
+	  <span>
+        <a href="https://chenziwenhaoshuai.github.io//">Artificial Intelligence Institute</a><br>
+		<a href="http://ei.hust.edu.cn/">School of Electronic Information and Communications</a><br>
+      <a href="http://www.hust.edu.cn/">Huazhong University of Science and Technology</a>
+	  </span>
+	  </p>
+    
+    <p>Email: chenziwen@hust.edu.cn <br>
+	  Address: Room C209, East 17 Hall, Luoyu Rd 1037, Wuhan, 430074, China <br>
+	  </p>
+	  <p>Research interests: Computer Vision and Multi-modal, especially, Multi-task learning.
+	  </p></td>
+
+	   <td width="300"><img src="./Page of Ziwen Chen_files/xw22head.png" alt="Photo" height="240"></td>
+  </tr>
+  </tbody>
+  </table>
+
+		<p><strong>News</strong></p>
+		<ul><li><p>[2025/08] Our paper TS-CLIP: Time Series Understanding by CLIP has been accepted as a Main conference paper at EMNLP-2025!!!!</p></li></ul>
+		<ul><li><p>[2025/05] We submitted two paper to AAAI-2026!</p></li></ul>
+		<ul><li><p>[2025/04] Our paper accepted for CVPR 2025 workshop!</p></li></ul>
+		<ul><li><p>[2024/08] <a href="https://ieeexplore.ieee.org/document/10976249">"TBformer: Multi-Scale Transformer With Time-Behavior Attention for Multi-Modal Customer Churn Prediction"</a>is accepted in IEEE Transactions on Consumer Electronics (IF:4.3, JCR Q2)</p></li></ul>
+		<ul><li><p>[2024/08] <a href="https://www.researchsquare.com/article/rs-4437659/v1">"A Measurement Model for Aquatic Animals Based on Instance Segmentation and 3D Point Cloud"</a>is accepted in IEEE Access (IF:3.3, JCR Q2)</p></li></ul>
+		<ul><li><p>[2024/08] <a href="https://authors.elsevier.com/tracking/article/details.do?aid=109384&jid=COMPAG&surname=Cao">"POLO: Pose Estimation with One-Stage Location-sensitive Coding."</a>is accepted in Computers and Electronics in Agriculture (IF:7.7, JCR Q1, Top)</p></li></ul>
+		<ul><li><p>[2024/08] <a href="https://link.springer.com/article/10.1007/s11760-024-03482-w">"Compact Bilinear Pooling and Multi-Loss Network for Social Media Multimodal Classification"</a>&nbsp;is published in SIGNAL IMAGE AND VIDEO PROCESSING (IF:2.0, JCR Q3)</p></li></ul>
+		<ul><li><p>[2024/02] <a href="https://link.springer.com/article/10.1007/s10499-024-01439-x">"UISS-Net:Underwater Image Semantic Segmentation Network for Improving Boundary Segmentation Accuracy of Underwater Images"</a>&nbsp;is published in Aquaculture International (IF:2.2, JCR Q2)</p></li></ul>
+		<ul><li><p>[2023/09] <a href="https://link.springer.com/article/10.1007/s10499-023-01269-3">"Measurement Model：A generic model for size measurement of aquatic products using instance segmentation"</a>&nbsp;is published in Aquaculture International (IF:2.2, JCR Q2)</p></li></ul>
+		<ul><li><p>[2022/05] <a href="https://ietresearch.onlinelibrary.wiley.com/doi/abs/10.1049/ipr2.12556">"FishNet: Fish visual recognition with one stage multi‐task learning"</a>.is published in IET Image Processing (IF:1.773, CCF C,JCR Q2)</p></li></ul>
+		<ul><li><p>[2022/03] <a href="https://www.hindawi.com/journals/misy/2022/1828848/">"YOLOv5-Based Vehicle Detection Method for High-Resolution UAV Images"</a>&nbsp;is published in Mobile Information Systems (IF:1.863, JCR Q3)</p></li></ul>
+		<ul><li><p>[2021/10] <a href="https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CAPJ&amp;dbname=CAPJLAST&amp;filename=HTYY20220518000&amp;uniplatform=NZKPT&amp;v=OEqUscfMFgz52lxPuOrcL-iXR8BqCsCkYYpl3G0W-74l3GMTXncCdCtiuHbX1KnD">"基于YOLOv5的工厂化养殖虾目标检测方法研究"</a>&nbsp;is published in 海洋渔业 (CSCD, 北大核心)</p></li></ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+	<p><strong>Awards</strong></p>
+	<ul><li><p><b>First-class Scholarship for Doctoral Students（2023.12）</b></p></li></ul>
+	<ul><li><p><b>National Scholarship（2022, 2019）</b></p></li></ul>
+
+	<ul><li><p><b>First Level Scholarship（2017, 2018, 2019, 2021）</b></p></li><li><p><b>Top 10 Outstanding Students Scholarship（2018）</b></p></li><li><p><b>Innovation and Entrepreneurship Scholarship（2017）</b></p></li></ul>
+	
+	<p><strong>Blogs</strong></p>
+	<ul>
+	<li><p>GIthub:<a href="https://github.com/chenziwenhaoshuai">website</a></p></li>
+	<li><p>CSDN:<a href="https://blog.csdn.net/dudu199806">website</a></p></li><li><p>Bilibili:&nbsp;<a href="https://space.bilibili.com/38032094?spm_id_from=333.1007.0.0">website</a></p></li>
+	</ul>
+
+	<p><b>Internships</b></p>
+	<ul>
+	<li><p><b>Haomo.AI</b>,&nbsp;Data Algorithm Engineer, 2022.5-2022.8</p></li>
+	</ul>
+
+	
+	<!-- 
+	<p><strong>Short Bio</strong></p>
+	<p>He completed his Master's degree at Huazhong University of Science and Technology in 2023 under the supervision of Wenyu Liu and went on to study for his PhD at Huazhong University of Science and Technology in 2023 under the supervision of Xinggang Wang.</p><p><br></p>
+	-->
+
+</div>
+</div>
+
+<div class="bottombar">
+  ©2023, https://chenziwenhaoshuai.github.io/
+  </div>
+	
+<!-- 100% privacy-first analytics -->
+<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+
+
+<textarea id="BFI_DATA" style="width: 1px; height: 1px; display: none;"></textarea><title> </title><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration><textarea id="BFI_DATA" style="width: 1px; height: 1px; display: none;"></textarea><title> </title><div id="WidgetFloaterPanels" translate="no" style="display: none; text-align: left; direction: ltr; visibility: hidden;" class="LTRStyle"> <div id="WidgetFloater" style="display: none" onmouseover="Microsoft.Translator.OnMouseOverFloater()" onmouseout="Microsoft.Translator.OnMouseOutFloater()"> <div id="WidgetLogoPanel"> <span id="WidgetTranslateWithSpan"><span>TRANSLATE with </span><img id="FloaterLogo"></span> <span id="WidgetCloseButton" title="Exit Translation" onclick="Microsoft.Translator.FloaterOnClose()">x</span></div> <div id="LanguageMenuPanel"> <div class="DDStyle_outer"><input name="LanguageMenu_svid" type="text" id="LanguageMenu_svid" style="display:none;" autocomplete="on" value="en" onclick="this.select()"> <input name="LanguageMenu_textid" type="text" id="LanguageMenu_textid" style="display:none;" autocomplete="on" onclick="this.select()"> <span onselectstart="return false" tabindex="0" class="DDStyle" id="__LanguageMenu_header" onclick="return LanguageMenu &amp;&amp; !LanguageMenu.Show(&#39;__LanguageMenu_popup&#39;, event);" onkeydown="return LanguageMenu &amp;&amp; !LanguageMenu.Show(&#39;__LanguageMenu_popup&#39;, event);">English</span> <div style="position:relative;text-align:left;left:0;"><div style="position:absolute;width:;left:0px;"><div class="DDStyle" style="display:none;" id="__LanguageMenu_popup"> <table id="LanguageMenu" border="0"> <tbody><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;ar&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#ar">Arabic</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;he&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#he">Hebrew</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;pl&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#pl">Polish</a></td> </tr><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;bg&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#bg">Bulgarian</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;hi&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#hi">Hindi</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;pt&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#pt">Portuguese</a></td> </tr><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;ca&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#ca">Catalan</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;mww&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#mww">Hmong Daw</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;ro&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#ro">Romanian</a></td> </tr><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;zh-CHS&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#zh-CHS">Chinese Simplified</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;hu&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#hu">Hungarian</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;ru&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#ru">Russian</a></td> </tr><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;zh-CHT&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#zh-CHT">Chinese Traditional</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;id&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#id">Indonesian</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;sk&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#sk">Slovak</a></td> </tr><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;cs&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#cs">Czech</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;it&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#it">Italian</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;sl&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#sl">Slovenian</a></td> </tr><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;da&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#da">Danish</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;ja&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#ja">Japanese</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;es&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#es">Spanish</a></td> </tr><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;nl&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#nl">Dutch</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;tlh&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#tlh">Klingon</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;sv&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#sv">Swedish</a></td> </tr><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;en&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#en">English</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;ko&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#ko">Korean</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;th&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#th">Thai</a></td> </tr><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;et&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#et">Estonian</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;lv&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#lv">Latvian</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;tr&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#tr">Turkish</a></td> </tr><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;fi&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#fi">Finnish</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;lt&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#lt">Lithuanian</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;uk&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#uk">Ukrainian</a></td> </tr><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;fr&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#fr">French</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;ms&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#ms">Malay</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;ur&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#ur">Urdu</a></td> </tr><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;de&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#de">German</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;mt&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#mt">Maltese</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;vi&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#vi">Vietnamese</a></td> </tr><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;el&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#el">Greek</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;no&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#no">Norwegian</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;cy&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#cy">Welsh</a></td> </tr><tr> <td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;ht&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#ht">Haitian Creole</a></td><td><a tabindex="-1" onclick="return LanguageMenu.onclick(&#39;fa&#39;);" ondragstart="LanguageMenu.ondragstart(event);" href="https://chenziwenhaoshuai.github.io//#fa">Persian</a></td><td></td> </tr> </tbody></table> <img alt="" style="height:7px;width:17px;border-width:0px;left:20px;"> </div></div></div></div> <script type="text/javascript"> var LanguageMenu; var LanguageMenu_keys=["ar","bg","ca","zh-CHS","zh-CHT","cs","da","nl","en","et","fi","fr","de","el","ht","he","hi","mww","hu","id","it","ja","tlh","ko","lv","lt","ms","mt","no","fa","pl","pt","ro","ru","sk","sl","es","sv","th","tr","uk","ur","vi","cy"]; var LanguageMenu_values=["Arabic","Bulgarian","Catalan","Chinese Simplified","Chinese Traditional","Czech","Danish","Dutch","English","Estonian","Finnish","French","German","Greek","Haitian Creole","Hebrew","Hindi","Hmong Daw","Hungarian","Indonesian","Italian","Japanese","Klingon","Korean","Latvian","Lithuanian","Malay","Maltese","Norwegian","Persian","Polish","Portuguese","Romanian","Russian","Slovak","Slovenian","Spanish","Swedish","Thai","Turkish","Ukrainian","Urdu","Vietnamese","Welsh"]; var LanguageMenu_callback=function(){ }; var LanguageMenu_popupid='__LanguageMenu_popup'; </script> </div> <div id="CTFLinksPanel"> <span id="ExternalLinksPanel"><a id="HelpLink" title="Help" target="_blank" href="https://go.microsoft.com/?linkid=9722454"> <img id="HelpImg"></a> <a id="EmbedLink" href="javascript:Microsoft.Translator.FloaterShowEmbed()" title="Get this widget for your own site"> <img id="EmbedImg"></a> <a id="ShareLink" title="Share translated page with friends" href="javascript:Microsoft.Translator.FloaterShowSharePanel()"> <img id="ShareImg"></a> </span> </div> <div id="FloaterProgressBar"> <span id="ProgressFill"></span> </div> </div> <div id="WidgetFloaterCollapsed" style="display: none" onmouseover="Microsoft.Translator.OnMouseOverFloater()"> <span>TRANSLATE with </span><img id="CollapsedLogoImg"></div> <div id="FloaterSharePanel" style="display: none"> <div id="ShareTextDiv"> <span id="ShareTextSpan"> COPY THE URL BELOW </span> </div> <div id="ShareTextboxDiv"> <input name="ShareTextbox" type="text" id="ShareTextbox" readonly="readonly" onclick="this.select()"> <!--a id="TwitterLink" title="Share on Twitter"> <img id="TwitterImg" /></a> <a-- id="FacebookLink" title="Share on Facebook"> <img id="FacebookImg" /></a--> <a id="EmailLink" title="Email this translation"> <img id="EmailImg"></a> </div> <div id="ShareFooter"> <span id="ShareHelpSpan"><a id="ShareHelpLink"> <img id="ShareHelpImg"></a></span> <span id="ShareBackSpan"><a id="ShareBack" href="javascript:Microsoft.Translator.FloaterOnShareBackClick()" title="Back To Translation"> Back</a></span> </div> <input name="EmailSubject" type="hidden" id="EmailSubject" value="Check out this page in {0} translated from {1}"> <input name="EmailBody" type="hidden" id="EmailBody" value="Translated: {0}%0d%0aOriginal: {1}%0d%0a%0d%0aAutomatic translation powered by Microsoft® Translator%0d%0ahttp://www.bing.com/translator?ref=MSTWidget"> <input type="hidden" id="ShareHelpText" value="This link allows visitors to launch this page and automatically translate it to {0}."> </div> <div id="FloaterEmbed" style="display: none"> <div id="EmbedTextDiv"> <span id="EmbedTextSpan">EMBED THE SNIPPET BELOW IN YOUR SITE</span> <a id="EmbedHelpLink" title="Copy this code and place it into your HTML."> <img id="EmbedHelpImg"></a> </div> <div id="EmbedTextboxDiv"> <input name="EmbedSnippetTextBox" type="text" id="EmbedSnippetTextBox" readonly="readonly" value="&lt;div id=&#39;MicrosoftTranslatorWidget&#39; class=&#39;Dark&#39; style=&#39;color:white;background-color:#555555&#39;&gt;&lt;/div&gt;&lt;script type=&#39;text/javascript&#39;&gt;setTimeout(function(){var s=document.createElement(&#39;script&#39;);s.type=&#39;text/javascript&#39;;s.charset=&#39;UTF-8&#39;;s.src=((location &amp;&amp; location.href &amp;&amp; location.href.indexOf(&#39;https&#39;) == 0)?&#39;https://ssl.microsofttranslator.com&#39;:&#39;http://www.microsofttranslator.com&#39;)+&#39;/ajax/v3/WidgetV3.ashx?siteData=ueOIGRSKkd965FeEGM5JtQ**&amp;ctf=true&amp;ui=true&amp;settings=manual&amp;from=en&#39;;var p=document.getElementsByTagName(&#39;head&#39;)[0]||document.documentElement;p.insertBefore(s,p.firstChild); },0);&lt;/script&gt;" onclick="this.select()"> </div> <div id="EmbedNoticeDiv"><span id="EmbedNoticeSpan">Enable collaborative features and customize widget: <a href="http://www.bing.com/widget/translator" target="_blank">Bing Webmaster Portal</a></span></div> <div id="EmbedFooterDiv"><span id="EmbedBackSpan"><a href="javascript:Microsoft.Translator.FloaterOnEmbedBackClick()" title="Back To Translation">Back</a></span></div> </div> <script type="text/javascript"> var intervalId = setInterval(function () { if (MtPopUpList) { LanguageMenu = new MtPopUpList(); var langMenu = document.getElementById(LanguageMenu_popupid); var origLangDiv = document.createElement("div"); origLangDiv.id = "OriginalLanguageDiv"; origLangDiv.innerHTML = "<span id='OriginalTextSpan'>ORIGINAL: </span><span id='OriginalLanguageSpan'></span>"; langMenu.appendChild(origLangDiv); LanguageMenu.Init('LanguageMenu', LanguageMenu_keys, LanguageMenu_values, LanguageMenu_callback, LanguageMenu_popupid); window["LanguageMenu"] = LanguageMenu; clearInterval(intervalId); } }, 1); </script> </div><div class="TnITTtw-fp-collapsed-button" style="display: block;"></div><div class="TnITTtw-mate-fp-bar" translate="no" style="z-index: 2; width: 0px; height: 0px; opacity: 0; display: none;">    <div class="TnITTtw-hide-fp-bar" style="display: none;"></div>    <div class="TnITTtw-current-page-lang" style="display: none;">此页面的语言为英语</div>    <div class="TnITTtw-cta-button-layout" style="display: none;">        <div class="TnITTtw-spinner">            <div class="TnITTtw-bounce1"></div>            <div class="TnITTtw-bounce2"></div>            <div class="TnITTtw-bounce3"></div>        </div>        <div class="TnITTtw-mw-button TnITTtw-fp-translate TnITTtw-high-cta" style="display: none;">翻译为</div>    </div>    <div class="TnITTtw-change-language TnITTtw-select" data-for-serial="3" style="display: none;"></div>    <div class="TnITTtw-stop-fp"></div>    <div class="TnITTtw-toggle-iphone-settings" style="display: none;"></div>    <div class="TnITTtw-ui_selector" style="display: none;">        <div class="TnITTtw-options-arrow" style="display: none;"></div>        <div class="TnITTtw-options TnITTtw-opt-3 TnITTtw-standalone" data-serial="3" style="display: none; z-index: 998;">            <div class="TnITTtw-dd-search">                <input class="TnITTtw-dd-input" type="text" data-dir="to" placeholder="搜索" data-width="NaN">            </div>            <div id="selVisibleScroll-3">                <div id="selEntireScroll-3">                    <div class="TnITTtw-inner-options-layout">                        <ul class="TnITTtw-list"><li class="lang-zh-CN TnITTtw-option" index="1"><span id="lang-zh-CN" val="zh-CN" class="lang-zh-CN">中文（简体）</span></li><li class="lang-zh-TW TnITTtw-option" index="2"><span id="lang-zh-TW" val="zh-TW" class="lang-zh-TW">中文（繁体）</span></li><li class="lang-da TnITTtw-option" index="3"><span id="lang-da" val="da" class="lang-da">丹麦语</span></li><li class="lang-uk TnITTtw-option" index="4"><span id="lang-uk" val="uk" class="lang-uk">乌克兰语</span></li><li class="lang-ur TnITTtw-option" index="5"><span id="lang-ur" val="ur" class="lang-ur">乌尔都语</span></li><li class="lang-hy TnITTtw-option" index="6"><span id="lang-hy" val="hy" class="lang-hy">亚美尼亚语</span></li><li class="lang-ru TnITTtw-option" index="7"><span id="lang-ru" val="ru" class="lang-ru">俄语</span></li><li class="lang-bg TnITTtw-option" index="8"><span id="lang-bg" val="bg" class="lang-bg">保加利亚语</span></li><li class="lang-hr TnITTtw-option" index="9"><span id="lang-hr" val="hr" class="lang-hr">克罗地亚语</span></li><li class="lang-is TnITTtw-option" index="10"><span id="lang-is" val="is" class="lang-is">冰岛语</span></li><li class="lang-ca TnITTtw-option" index="11"><span id="lang-ca" val="ca" class="lang-ca">加泰罗尼亚语</span></li><li class="lang-hu TnITTtw-option" index="12"><span id="lang-hu" val="hu" class="lang-hu">匈牙利语</span></li><li class="lang-kn TnITTtw-option" index="13"><span id="lang-kn" val="kn" class="lang-kn">卡纳达语</span></li><li class="lang-hi TnITTtw-option" index="14"><span id="lang-hi" val="hi" class="lang-hi">印地语</span></li><li class="lang-id TnITTtw-option" index="15"><span id="lang-id" val="id" class="lang-id">印尼语</span></li><li class="lang-gu TnITTtw-option" index="16"><span id="lang-gu" val="gu" class="lang-gu">古吉拉特语</span></li><li class="lang-kk TnITTtw-option" index="17"><span id="lang-kk" val="kk" class="lang-kk">哈萨克语</span></li><li class="lang-tr TnITTtw-option" index="18"><span id="lang-tr" val="tr" class="lang-tr">土耳其语</span></li><li class="lang-cy TnITTtw-option" index="19"><span id="lang-cy" val="cy" class="lang-cy">威尔士语</span></li><li class="lang-bn TnITTtw-option" index="20"><span id="lang-bn" val="bn" class="lang-bn">孟加拉语</span></li><li class="lang-ne TnITTtw-option" index="21"><span id="lang-ne" val="ne" class="lang-ne">尼泊尔语</span></li><li class="lang-af TnITTtw-option" index="22"><span id="lang-af" val="af" class="lang-af">布尔语(南非荷兰语)</span></li><li class="lang-iw TnITTtw-option" index="23"><span id="lang-iw" val="iw" class="lang-iw">希伯来语</span></li><li class="lang-el TnITTtw-option" index="24"><span id="lang-el" val="el" class="lang-el">希腊语</span></li><li class="lang-ku TnITTtw-option" index="25"><span id="lang-ku" val="ku" class="lang-ku">库尔德语</span></li><li class="lang-de TnITTtw-option" index="26"><span id="lang-de" val="de" class="lang-de">德语</span></li><li class="lang-it TnITTtw-option" index="27"><span id="lang-it" val="it" class="lang-it">意大利语</span></li><li class="lang-lv TnITTtw-option" index="28"><span id="lang-lv" val="lv" class="lang-lv">拉脱维亚语</span></li><li class="lang-no TnITTtw-option" index="29"><span id="lang-no" val="no" class="lang-no">挪威语</span></li><li class="lang-cs TnITTtw-option" index="30"><span id="lang-cs" val="cs" class="lang-cs">捷克语</span></li><li class="lang-sk TnITTtw-option" index="31"><span id="lang-sk" val="sk" class="lang-sk">斯洛伐克语</span></li><li class="lang-sl TnITTtw-option" index="32"><span id="lang-sl" val="sl" class="lang-sl">斯洛文尼亚语</span></li><li class="lang-pa TnITTtw-option" index="33"><span id="lang-pa" val="pa" class="lang-pa">旁遮普语</span></li><li class="lang-ja TnITTtw-option" index="34"><span id="lang-ja" val="ja" class="lang-ja">日语</span></li><li class="lang-ps TnITTtw-option" index="35"><span id="lang-ps" val="ps" class="lang-ps">普什图语</span></li><li class="lang-mi TnITTtw-option" index="36"><span id="lang-mi" val="mi" class="lang-mi">毛利语</span></li><li class="lang-fr TnITTtw-option" index="37"><span id="lang-fr" val="fr" class="lang-fr">法语</span></li><li class="lang-pl TnITTtw-option" index="38"><span id="lang-pl" val="pl" class="lang-pl">波兰语</span></li><li class="lang-fa TnITTtw-option" index="39"><span id="lang-fa" val="fa" class="lang-fa">波斯语</span></li><li class="lang-te TnITTtw-option" index="40"><span id="lang-te" val="te" class="lang-te">泰卢固语</span></li><li class="lang-ta TnITTtw-option" index="41"><span id="lang-ta" val="ta" class="lang-ta">泰米尔语</span></li><li class="lang-th TnITTtw-option" index="42"><span id="lang-th" val="th" class="lang-th">泰语</span></li><li class="lang-ht TnITTtw-option" index="43"><span id="lang-ht" val="ht" class="lang-ht">海地克里奥尔语</span></li><li class="lang-et TnITTtw-option" index="44"><span id="lang-et" val="et" class="lang-et">爱沙尼亚语</span></li><li class="lang-sv TnITTtw-option" index="45"><span id="lang-sv" val="sv" class="lang-sv">瑞典语</span></li><li class="lang-lt TnITTtw-option" index="46"><span id="lang-lt" val="lt" class="lang-lt">立陶宛语</span></li><li class="lang-my TnITTtw-option" index="47"><span id="lang-my" val="my" class="lang-my">缅甸语</span></li><li class="lang-ro TnITTtw-option" index="48"><span id="lang-ro" val="ro" class="lang-ro">罗马尼亚语</span></li><li class="lang-lo TnITTtw-option" index="49"><span id="lang-lo" val="lo" class="lang-lo">老挝语</span></li><li class="lang-fi TnITTtw-option" index="50"><span id="lang-fi" val="fi" class="lang-fi">芬兰语</span></li><li class="lang-en TnITTtw-option" index="51"><span id="lang-en" val="en" class="lang-en">英语</span></li><li class="lang-nl TnITTtw-option" index="52"><span id="lang-nl" val="nl" class="lang-nl">荷兰语</span></li><li class="lang-sm TnITTtw-option" index="53"><span id="lang-sm" val="sm" class="lang-sm">萨摩亚语</span></li><li class="lang-pt TnITTtw-option" index="54"><span id="lang-pt" val="pt" class="lang-pt">葡萄牙语</span></li><li class="lang-es TnITTtw-option" index="55"><span id="lang-es" val="es" class="lang-es">西班牙语</span></li><li class="lang-vi TnITTtw-option" index="56"><span id="lang-vi" val="vi" class="lang-vi">越南语</span></li><li class="lang-az TnITTtw-option" index="57"><span id="lang-az" val="az" class="lang-az">阿塞拜疆语</span></li><li class="lang-am TnITTtw-option" index="58"><span id="lang-am" val="am" class="lang-am">阿姆哈拉语</span></li><li class="lang-sq TnITTtw-option" index="59"><span id="lang-sq" val="sq" class="lang-sq">阿尔巴尼亚语</span></li><li class="lang-ar TnITTtw-option" index="60"><span id="lang-ar" val="ar" class="lang-ar">阿拉伯语</span></li><li class="lang-ko TnITTtw-option" index="61"><span id="lang-ko" val="ko" class="lang-ko">韩语</span></li><li class="lang-mg TnITTtw-option" index="62"><span id="lang-mg" val="mg" class="lang-mg">马尔加什语</span></li><li class="lang-mr TnITTtw-option" index="63"><span id="lang-mr" val="mr" class="lang-mr">马拉地语</span></li><li class="lang-ml TnITTtw-option" index="64"><span id="lang-ml" val="ml" class="lang-ml">马拉雅拉姆语</span></li><li class="lang-ms TnITTtw-option" index="65"><span id="lang-ms" val="ms" class="lang-ms">马来语</span></li><li class="lang-mt TnITTtw-option" index="66"><span id="lang-mt" val="mt" class="lang-mt">马耳他语</span></li><li class="lang-km TnITTtw-option" index="67"><span id="lang-km" val="km" class="lang-km">高棉语</span></li></ul>                    </div>                </div>                <div id="sel-scrollbar-3">                    <div id="sel-track-3">                        <div id="sel-dragBar-3"></div>                    </div>                </div>            </div>        </div>    </div>    <div class="TnITTtw-fp-options" style="display: none;">        <input type="checkbox" id="TnITTtw-always-translate" style="display: none;" readonly="readonly"><label for="TnITTtw-always-translate" class="TnITTtw-always-translate-label TnITTtw-not-pro" style="display: none;"><span class="TnITTtw-always-translate-inner-label" style="display: none;">随时将英语翻译为</span><span class="TnITTtw-pro-label" style="display: none;">PRO</span></label>        <br style="display: none;">        <input type="checkbox" id="TnITTtw-never-translate-lang" style="display: none;"><label for="TnITTtw-never-translate-lang" class="TnITTtw-never-translate-lang-label" style="display: none;">一律不翻译英语</label>        <br style="display: none;">        <input type="checkbox" id="TnITTtw-never-translate-site" style="display: none;"><label for="TnITTtw-never-translate-site" class="TnITTtw-never-translate-site-label" style="display: none;">一律不翻译https://chenziwenhaoshuai.github.io/</label>    </div></div></body></html>
